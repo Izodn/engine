@@ -33,3 +33,15 @@ void Game::ChangeToLevel(GameLevel* level)
 		m_CurrentLevel->Init();
 	}
 }
+
+void Game::Cleanup()
+{
+	if (m_CurrentLevel != NULL) {
+		// Trigger cleanup
+		m_CurrentLevel->Cleanup();
+
+		// Actually free the memory
+		std::cout << "Deleting level: " << (void*)m_CurrentLevel << std::endl;
+		free(m_CurrentLevel);
+	}
+}

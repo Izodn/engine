@@ -12,6 +12,7 @@ class ClassType
 			static const uint32_t m_Type = m_NextType++;
 			return m_Type;
 		};
+
 	private:
 		static uint32_t m_NextType;
 };

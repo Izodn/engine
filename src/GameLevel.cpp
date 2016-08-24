@@ -25,6 +25,10 @@ void GameLevel::Cleanup()
 {
 	for (GameObject* object : m_GameObjects) {
 		if (object != NULL) {
+			// Trigger object cleanup
+			object->Cleanup();
+
+			// Actually free memory
 			std::cout << "Deleting object: " << (void*)object << std::endl;
 			free(object);
 		} else {

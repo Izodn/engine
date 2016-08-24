@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "Window.hpp"
 #include "GameLevel.hpp"
 
@@ -18,4 +20,5 @@ class Game
 		void Run();
 		void AttachWindow(Window*);
 		void ChangeToLevel(GameLevel*);
+		void Cleanup();
 };

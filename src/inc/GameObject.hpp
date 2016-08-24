@@ -1,9 +1,12 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 #include "Collection.hpp"
 #include "component/Component.hpp"
+
+class Component;
 
 class GameObject
 {
@@ -17,4 +20,5 @@ class GameObject
 		Collection<Component>* Components();
 		void Start();
 		void Update();
+		void Cleanup();
 };

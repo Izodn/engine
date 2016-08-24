@@ -2,6 +2,8 @@
 
 #include "../InputHandler.hpp"
 
+class InputHandler;
+
 class Component
 {
 	private:
