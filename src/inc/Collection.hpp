@@ -54,13 +54,13 @@ class Collection
 					return (T*)m_Items.at(cur);
 				}
 			}
-			return nullptr;
+			return NULL;
 		};
 
 		template<typename T>
 		bool Has()
 		{
-			return (this->Get<T>() != nullptr);
+			return (this->Get<T>() != NULL);
 		};
 
 		std::vector<TBase*> GetAll()

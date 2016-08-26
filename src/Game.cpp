@@ -1,6 +1,11 @@
 #include "inc/Game.hpp"
 
-Game::Game() : m_Running(false), m_CurrentFrame(0)
+Game::Game() :
+	m_CurrentLevel(NULL),
+	m_Running(false),
+	m_CurrentFrame(0),
+	m_UpdateTickRate(120),
+	m_LastUpdateTick(0)
 {
 
 }
@@ -10,7 +15,14 @@ void Game::Run()
 	m_Running = true;
 	while (m_Running) {
 		m_CurrentFrame++;
-		m_CurrentLevel->UpdateObjects();
+
+		// Update timer
+		uint64_t tick = m_Timer.GetTick();
+		uint64_t deltaTick = tick - m_LastUpdateTick;
+		if (deltaTick >= (1000 / m_UpdateTickRate)) {
+			m_CurrentLevel->UpdateObjects();
+			m_LastUpdateTick = tick;
+		}
 	}
 }
 
@@ -43,5 +55,14 @@ void Game::Cleanup()
 		// Actually free the memory
 		std::cout << "Deleting level: " << (void*)m_CurrentLevel << std::endl;
 		free(m_CurrentLevel);
+	}
+}
+
+void Game::UpdateTickRate(uint64_t tickRate)
+{
+	// Game tick rate in MS
+	m_UpdateTickRate = tickRate;
+	if (m_UpdateTickRate > 1000 || m_UpdateTickRate == 0) {
+		m_UpdateTickRate = 1000;
 	}
 }

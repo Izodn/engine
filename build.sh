@@ -1,9 +1,11 @@
 #! /bin/sh
 set -e
 
-APP_NAME="libengine.a"
+APP_NAME="engine"
 FILES=(
+	"Timer.cpp"
 	"Game.cpp"
+	"OpenGLRenderer.cpp"
 	"Window.cpp"
 	"InputHandler.cpp"
 	"Component.cpp"
@@ -17,7 +19,7 @@ SRC_DIR="./src"
 
 INCFLAGS=""
 
-LINKFLAGS=""
+LINKFLAGS="-lGLEW -lglfw3 -lGL -ldl -lXinerama -lXrandr -lXcursor -lX11 -lXxf86vm -lpthread"
 
 CFLAGS_DEFAULT="-std=c++14 $INCFLAGS"
 
@@ -31,18 +33,18 @@ do_compile()
 {
 	echo "Compiling..."
 	for cur in ${FILES[@]}; do
-		$COMPILER $CFLAGS -o "$BIN_DIR/$(echo ${cur} | sed -e "s/\//\./g").o" -c "$SRC_DIR/${cur}"
+		$COMPILER $CFLAGS -c -fPIC "$SRC_DIR/${cur}" -o "$BIN_DIR/$(echo ${cur} | sed -e "s/\//\./g").o"
 	done
 }
 
 do_link()
 {
 	echo "Linking..."
-	ar rvs "./bin/$APP_NAME" $(echo
+	$COMPILER $(echo
 		for cur in ${FILES[@]}; do
 			echo "$BIN_DIR/$(echo ${cur} | sed -e "s/\//\./g").o"
 		done
-	)
+	) -shared $LINKFLAGS -o "./bin/lib$APP_NAME.so"
 }
 
 main()
