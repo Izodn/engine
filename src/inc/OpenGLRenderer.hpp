@@ -14,7 +14,12 @@
 
 class OpenGLRenderer : public Renderer
 {
+	private:
+		GLFWwindow* m_Window = NULL;
+
 	public:
 		OpenGLRenderer();
+		void SetWindow(GLFWwindow*);
+		void Flush();
 		void Cleanup();
 };

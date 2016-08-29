@@ -7,7 +7,8 @@ Game::Game() :
 	m_UpdateTickRate(120),
 	m_LastUpdateTick(0)
 {
-
+	OpenGLApplication app;
+	app.Setup(&m_EventHandler, &m_Renderer, &m_Window);
 }
 
 void Game::Run()
@@ -23,12 +24,10 @@ void Game::Run()
 			m_CurrentLevel->UpdateObjects();
 			m_LastUpdateTick = tick;
 		}
+
+		// Flush the graphics to the window
+		m_Renderer->Flush();
 	}
-}
-
-void Game::AttachWindow(Window* window)
-{
-
 }
 
 void Game::ChangeToLevel(GameLevel* level)
@@ -65,4 +64,9 @@ void Game::UpdateTickRate(uint64_t tickRate)
 	if (m_UpdateTickRate > 1000 || m_UpdateTickRate == 0) {
 		m_UpdateTickRate = 1000;
 	}
+}
+
+Window* Game::GetWindow()
+{
+	return m_Window;
 }

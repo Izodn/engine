@@ -1,17 +1,16 @@
 #pragma once
 
-#include <iostream>
 #include <string>
 
 #include "Renderer.hpp"
-#include "OpenGLRenderer.hpp"
+
+class Renderer;
 
 class Window
 {
-	private:
-		Renderer* m_Renderer = NULL;
-
 	public:
-		Window(uint64_t, uint64_t, std::string);
-		void ChangeRenderer(Renderer::Type);
+		virtual void SetRenderer(Renderer*) = 0;
+		virtual Renderer* GetRenderer() = 0;
+		virtual void SetResolution(int, int) = 0;
+		virtual void SetTitle(std::string) = 0;
 };

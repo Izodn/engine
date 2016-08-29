@@ -3,14 +3,16 @@ set -e
 
 APP_NAME="engine"
 FILES=(
-	"Timer.cpp"
-	"Game.cpp"
-	"OpenGLRenderer.cpp"
-	"Window.cpp"
-	"InputHandler.cpp"
 	"Component.cpp"
+	"Game.cpp"
 	"GameLevel.cpp"
 	"GameObject.cpp"
+	"InputHandler.cpp"
+	"OpenGLApplication.cpp"
+	"OpenGLEventHandler.cpp"
+	"OpenGLRenderer.cpp"
+	"OpenGLWindow.cpp"
+	"Timer.cpp"
 )
 
 COMPILER="g++"
