@@ -17,9 +17,13 @@ COMPILER="g++"
 BIN_DIR="./bin"
 SRC_DIR="./src"
 
+# Linux
 INCFLAGS=""
+LINKFLAGS="-Wl,-Bstatic -lGLEW -lglfw3 -Wl,-Bdynamic -lGL -ldl -lXinerama -lXrandr -lXcursor -lX11 -lXxf86vm -lpthread -Wl,--as-needed"
 
-LINKFLAGS="-lGLEW -lglfw3 -lGL -ldl -lXinerama -lXrandr -lXcursor -lX11 -lXxf86vm -lpthread"
+# Windows
+#INCFLAGS=""
+#LINKFLAGS=""
 
 CFLAGS_DEFAULT="-std=c++14 $INCFLAGS"
 
