@@ -18,18 +18,31 @@ void OpenGLEventHandler::stMouseButtonCallback(GLFWwindow*, int button, int acti
 
 void OpenGLEventHandler::MouseButtonCallback(int button, int action)
 {
-	// Mouse one
-	if (button == 0 && action == 1) {
-		Input::Press(Input::Key::MOUSE_ONE);
-	} else if (button == 0 && action == 0) {
-		Input::Release(Input::Key::MOUSE_ONE);
+	auto got = m_MouseButtonPairs.find(button);
+	if (got != m_MouseButtonPairs.end()) {
+		if (action == 1) {
+			Input::Press(got->second);
+		} else if (action == 0) {
+			Input::Release(got->second);
+		}
 	}
+}
 
-	// Mouse two
-	else if (button == 1 && action == 1) {
-		Input::Press(Input::Key::MOUSE_TWO);
-	} else if (button == 1 && action == 0) {
-		Input::Release(Input::Key::MOUSE_TWO);
+void OpenGLEventHandler::stKeyCallback(GLFWwindow*, int button, int, int action, int)
+{
+	Self()->KeyCallback(button, action);
+}
+
+void OpenGLEventHandler::KeyCallback(int button, int action)
+{
+	std::cout << "button:" << button << " action:" << action << std::endl;
+	auto got = m_KeyPairs.find(button);
+	if (got != m_KeyPairs.end()) {
+		if (action == 1) {
+			Input::Press(got->second);
+		} else if (action == 0) {
+			Input::Release(got->second);
+		}
 	}
 }
 
@@ -47,6 +60,7 @@ void OpenGLEventHandler::Register()
 {
 	// Set GLFW callbacks
 	glfwSetMouseButtonCallback(m_Window, &OpenGLEventHandler::stMouseButtonCallback);
+	glfwSetKeyCallback(m_Window, &OpenGLEventHandler::stKeyCallback);
 }
 
 void OpenGLEventHandler::PollEvents()
