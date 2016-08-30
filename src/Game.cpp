@@ -39,6 +39,8 @@ void Game::Run()
 		// Output FPS
 		if ((tick - lastFpsOut) >= 1000) {
 			double fps = (m_CurrentFrame - lastFpsFrame);
+			fps /= (tick - lastFpsOut) / 1000;
+
 			std::cout << "FPS: " << fps << std::endl;
 			lastFpsOut = tick;
 			lastFpsFrame = m_CurrentFrame;
