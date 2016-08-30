@@ -17,6 +17,9 @@ void Game::Run()
 	while (m_Running) {
 		m_CurrentFrame++;
 
+		// Poll events
+		m_EventHandler->PollEvents();
+
 		// Update timer
 		uint64_t tick = m_Timer.GetTick();
 		uint64_t deltaTick = tick - m_LastUpdateTick;

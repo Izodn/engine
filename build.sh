@@ -24,8 +24,8 @@ INCFLAGS=""
 LINKFLAGS="-Wl,-Bstatic -lGLEW -lglfw3 -Wl,-Bdynamic -lGL -ldl -lXinerama -lXrandr -lXcursor -lX11 -lXxf86vm -lpthread -Wl,--as-needed"
 
 # Windows
-#INCFLAGS=""
-#LINKFLAGS=""
+#INCFLAGS="-I../libraries"
+#LINKFLAGS="-L../libraries/GL -L../libraries/GLFW -Wl,-Bstatic -lglew32 -lglfw3 -Wl,-Bdynamic -lopengl32 -lgdi32 -lpthread -Wl,--as-needed"
 
 CFLAGS_DEFAULT="-std=c++14 $INCFLAGS"
 
@@ -50,7 +50,7 @@ do_link()
 		for cur in ${FILES[@]}; do
 			echo "$BIN_DIR/$(echo ${cur} | sed -e "s/\//\./g").o"
 		done
-	) -shared $LINKFLAGS -o "./bin/lib$APP_NAME.so"
+	) -shared $LINKFLAGS -o "./bin/$APP_NAME.dll"
 }
 
 main()
