@@ -32,6 +32,7 @@ class Game
 	public:
 		Game();
 		void Run();
+		void Stop();
 		void ChangeToLevel(GameLevel*);
 		void Cleanup();
 		void UpdateTickRate(uint64_t);

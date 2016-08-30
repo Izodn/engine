@@ -13,6 +13,7 @@
 #include "Window.hpp"
 #include "OpenGLWindow.hpp"
 #include "OpenGLEventHandler.hpp"
+#include "Game.hpp"
 
 class Application;
 class EventHandler;
@@ -20,10 +21,11 @@ class Renderer;
 class Window;
 class OpenGLWindow;
 class OpenGLEventHandler;
+class Game;
 
 class OpenGLApplication : public Application
 {
 	public:
 		OpenGLApplication();
-		void Setup(EventHandler**, Renderer**, Window**);
+		void Setup(Game*, EventHandler**, Renderer**, Window**);
 };

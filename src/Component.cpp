@@ -4,8 +4,3 @@ Component::Component()
 {
 
 }
-
-InputHandler* Component::Input()
-{
-	return m_InputHandler;
-}

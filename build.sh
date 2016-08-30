@@ -7,7 +7,7 @@ FILES=(
 	"Game.cpp"
 	"GameLevel.cpp"
 	"GameObject.cpp"
-	"InputHandler.cpp"
+	"Input.cpp"
 	"OpenGLApplication.cpp"
 	"OpenGLEventHandler.cpp"
 	"OpenGLRenderer.cpp"

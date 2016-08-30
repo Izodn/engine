@@ -8,7 +8,7 @@ Game::Game() :
 	m_LastUpdateTick(0)
 {
 	OpenGLApplication app;
-	app.Setup(&m_EventHandler, &m_Renderer, &m_Window);
+	app.Setup(this, &m_EventHandler, &m_Renderer, &m_Window);
 }
 
 void Game::Run()
@@ -26,11 +26,19 @@ void Game::Run()
 		if (deltaTick >= (1000 / m_UpdateTickRate)) {
 			m_CurrentLevel->UpdateObjects();
 			m_LastUpdateTick = tick;
+
+			// Clear all inputs
+			Input::Clear();
 		}
 
 		// Flush the graphics to the window
 		m_Renderer->Flush();
 	}
+}
+
+void Game::Stop()
+{
+	m_Running = false;
 }
 
 void Game::ChangeToLevel(GameLevel* level)

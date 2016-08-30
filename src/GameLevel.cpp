@@ -10,6 +10,17 @@ void GameLevel::SetGame(Game* game)
 	m_Game = game;
 }
 
+void GameLevel::StartObjects()
+{
+	for (GameObject* object : m_GameObjects) {
+		if (object != NULL) {
+			object->Start();
+		} else {
+			std::cout << "Tried to start NULL GameObject" << std::endl;
+		}
+	}
+}
+
 void GameLevel::UpdateObjects()
 {
 	for (GameObject* object : m_GameObjects) {
