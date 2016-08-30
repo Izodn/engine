@@ -2,6 +2,13 @@
 set -e
 
 APP_NAME="engine"
+
+# Linux
+OUTPUT_NAME="lib$APP_NAME.so"
+
+# Windows
+#OUTPUT_NAME="$APP_NAME.dll"
+
 FILES=(
 	"Component.cpp"
 	"Game.cpp"
@@ -50,7 +57,7 @@ do_link()
 		for cur in ${FILES[@]}; do
 			echo "$BIN_DIR/$(echo ${cur} | sed -e "s/\//\./g").o"
 		done
-	) -shared $LINKFLAGS -o "./bin/$APP_NAME.dll"
+	) -shared $LINKFLAGS -o "./bin/$OUTPUT_NAME"
 }
 
 main()

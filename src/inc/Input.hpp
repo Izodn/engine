@@ -1,6 +1,7 @@
 #pragma once
 
-#include <unordered_map>
+#include <algorithm>
+#include <vector>
 #include <string>
 #include <iostream>
 
@@ -21,11 +22,11 @@ class Input
 		};
 
 	private:
-		std::unordered_map<Input::Key, bool> m_Pressed;
-		std::unordered_map<Input::Key, bool> m_Released;
+		std::vector<Input::Key> m_Pressed;
+		std::vector<Input::Key> m_Released;
 
 	public:
-		static Input* GetInstance();
+		static Input* Self();
 		static void Clear();
 		static void Press(Input::Key);
 		static bool Pressed(Input::Key);

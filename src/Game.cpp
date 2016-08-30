@@ -14,6 +14,8 @@ Game::Game() :
 void Game::Run()
 {
 	m_Running = true;
+	uint64_t lastFpsOut = 0;
+	uint64_t lastFpsFrame = 0;
 	while (m_Running) {
 		m_CurrentFrame++;
 
@@ -33,6 +35,14 @@ void Game::Run()
 
 		// Flush the graphics to the window
 		m_Renderer->Flush();
+
+		// Output FPS
+		if ((tick - lastFpsOut) >= 1000) {
+			double fps = (m_CurrentFrame - lastFpsFrame);
+			std::cout << "FPS: " << fps << std::endl;
+			lastFpsOut = tick;
+			lastFpsFrame = m_CurrentFrame;
+		}
 	}
 }
 

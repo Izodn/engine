@@ -24,7 +24,7 @@ class OpenGLEventHandler : public EventHandler
 		Game* m_Game = NULL;
 
 	public:
-		static OpenGLEventHandler& GetInstance();
+		static OpenGLEventHandler* Self();
 		static void stMouseButtonCallback(GLFWwindow*, int, int, int);
 
 	public:

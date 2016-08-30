@@ -5,15 +5,15 @@ OpenGLEventHandler::OpenGLEventHandler()
 
 }
 
-OpenGLEventHandler& OpenGLEventHandler::GetInstance()
+OpenGLEventHandler* OpenGLEventHandler::Self()
 {
-	static OpenGLEventHandler instance;
+	static OpenGLEventHandler* instance = new OpenGLEventHandler();
 	return instance;
 };
 
 void OpenGLEventHandler::stMouseButtonCallback(GLFWwindow*, int button, int action, int)
 {
-	GetInstance().MouseButtonCallback(button, action);
+	Self()->MouseButtonCallback(button, action);
 }
 
 void OpenGLEventHandler::MouseButtonCallback(int button, int action)

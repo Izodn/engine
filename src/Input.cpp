@@ -5,22 +5,20 @@ Input::Input()
 
 }
 
-Input* Input::GetInstance()
+Input* Input::Self()
 {
-	static Input instance;
-	return &instance;
+	static Input* instance = new Input();
+	return instance;
 };
 
 void Input::Clear()
 {
-	Input* instance = GetInstance();
-	instance->m_Pressed.clear();
-	instance->m_Released.clear();
+	Self()->m_Pressed.clear();
+	Self()->m_Released.clear();
 }
 
 double Input::GetAxis(Input::Axis axis)
 {
-	Input* instance = GetInstance();
 	double delta = 0;
 
 	if (axis == Input::Axis::VERTICAL) {
@@ -36,24 +34,30 @@ double Input::GetAxis(Input::Axis axis)
 
 bool Input::Pressed(Input::Key key)
 {
-	Input* instance = GetInstance();
-	return (instance->m_Pressed.find(key) != instance->m_Pressed.end());
+	auto got = std::find(
+		Self()->m_Pressed.begin(),
+		Self()->m_Pressed.end(),
+		key
+	);
+	return (got != Self()->m_Pressed.end());
 }
 
 void Input::Press(Input::Key key)
 {
-	Input* instance = GetInstance();
-	instance->m_Pressed[key] = true;
+	Self()->m_Pressed.push_back(key);
 }
 
 bool Input::Released(Input::Key key)
 {
-	Input* instance = GetInstance();
-	return (instance->m_Released.find(key) != instance->m_Released.end());
+	auto got = std::find(
+		Self()->m_Released.begin(),
+		Self()->m_Released.end(),
+		key
+	);
+	return (got != Self()->m_Released.end());
 }
 
 void Input::Release(Input::Key key)
 {
-	Input* instance = GetInstance();
-	instance->m_Released[key] = true;
+	Self()->m_Released.push_back(key);
 }
