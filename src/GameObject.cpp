@@ -5,9 +5,20 @@ GameObject::GameObject()
 
 }
 
+void GameObject::SetLevel(GameLevel* gameLevel)
+{
+	m_GameLevel = gameLevel;
+}
+
+GameLevel* GameObject::GetLevel()
+{
+	return m_GameLevel;
+}
+
 void GameObject::Start()
 {
 	for (Component* component : m_Components.GetAll()) {
+		component->SetGameObject(this);
 		component->Start();
 	}
 }

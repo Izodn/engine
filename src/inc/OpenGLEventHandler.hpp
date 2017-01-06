@@ -28,10 +28,22 @@ class OpenGLEventHandler : public EventHandler
 			{1, Input::Key::MOUSE_TWO}
 		};
 		const std::unordered_map<uint64_t, Input::Key> m_KeyPairs = {
-			{431, Input::Key::KEY_LCTRL},
-			{432, Input::Key::KEY_LALT},
-			{340, Input::Key::KEY_LSHIFT},
 			{32, Input::Key::KEY_SPACE},
+
+			{340, Input::Key::KEY_LSHIFT},
+			{341, Input::Key::KEY_LCTRL},
+			{342, Input::Key::KEY_LALT},
+			{345, Input::Key::KEY_RCTRL},
+			{346, Input::Key::KEY_RALT},
+
+			{262, Input::Key::KEY_RIGHT},
+			{263, Input::Key::KEY_LEFT},
+			{264, Input::Key::KEY_DOWN},
+			{265, Input::Key::KEY_UP},
+			{256, Input::Key::KEY_ESCAPE},
+			{257, Input::Key::KEY_ENTER},
+			{258, Input::Key::KEY_TAB},
+			{259, Input::Key::KEY_BACKSPACE},
 
 			{48, Input::Key::KEY_0},
 			{49, Input::Key::KEY_1},

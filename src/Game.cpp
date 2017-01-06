@@ -46,10 +46,14 @@ void Game::Run()
 			lastFpsFrame = m_CurrentFrame;
 		}
 	}
+
+	std::cout << "Initiating cleanup" << std::endl;
+	Cleanup();
 }
 
 void Game::Stop()
 {
+	std::cout << "Game::Stop() called" << std::endl;
 	m_Running = false;
 }
 
@@ -65,6 +69,7 @@ void Game::ChangeToLevel(GameLevel* level)
 		m_CurrentLevel = level;
 		m_CurrentLevel->SetGame(this);
 		m_CurrentLevel->Init();
+		m_CurrentLevel->StartObjects();
 	}
 }
 
@@ -77,7 +82,9 @@ void Game::Cleanup()
 		// Actually free the memory
 		std::cout << "Deleting level: " << (void*)m_CurrentLevel << std::endl;
 		free(m_CurrentLevel);
+		std::cout << "Level successfully deleted: " << std::endl;
 	}
+	m_Renderer->Cleanup();
 }
 
 void Game::UpdateTickRate(uint64_t tickRate)

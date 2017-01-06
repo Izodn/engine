@@ -10,10 +10,17 @@ void GameLevel::SetGame(Game* game)
 	m_Game = game;
 }
 
+Game* GameLevel::GetGame()
+{
+	return m_Game;
+}
+
 void GameLevel::StartObjects()
 {
+	std::cout << "GameLevel::StartObjects" << std::endl;
 	for (GameObject* object : m_GameObjects) {
 		if (object != NULL) {
+			object->SetLevel(this);
 			object->Start();
 		} else {
 			std::cout << "Tried to start NULL GameObject" << std::endl;
@@ -42,6 +49,7 @@ void GameLevel::Cleanup()
 			// Actually free memory
 			std::cout << "Deleting object: " << (void*)object << std::endl;
 			free(object);
+			std::cout << "Object successfully deleted: " << std::endl;
 		} else {
 			std::cout << "Tried to remove NULL GameObject" << std::endl;
 		}

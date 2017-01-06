@@ -21,6 +21,7 @@ class GameLevel
 		void UpdateObjects();
 		void Cleanup();
 		void SetGame(Game*);
+		Game* GetGame();
 
 	public:
 		virtual void Init() = 0;
