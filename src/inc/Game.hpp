@@ -19,10 +19,10 @@ class OpenGLApplication;
 class Game
 {
 	protected:
-		EventHandler* m_EventHandler = NULL;
-		Renderer* m_Renderer = NULL;
-		Window* m_Window = NULL;
-		GameLevel* m_CurrentLevel = NULL;
+		EventHandler* m_EventHandler = nullptr;
+		Renderer* m_Renderer = nullptr;
+		Window* m_Window = nullptr;
+		GameLevel* m_CurrentLevel = nullptr;
 		bool m_Running;
 		uint64_t m_CurrentFrame;
 		uint64_t m_UpdateTickRate;
@@ -37,4 +37,12 @@ class Game
 		void Cleanup();
 		void UpdateTickRate(uint64_t);
 		Window* GetWindow();
+
+	public:
+		template<typename T>
+		void RegisterShader()
+		{
+			m_Renderer->RegisterShader<T>();
+		};
+
 };

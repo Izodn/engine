@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <vector>
 
 template<typename TBase>
@@ -54,13 +55,13 @@ class Collection
 					return (T*)m_Items.at(cur);
 				}
 			}
-			return NULL;
+			return nullptr;
 		};
 
 		template<typename T>
 		bool Has()
 		{
-			return (this->Get<T>() != NULL);
+			return (this->Get<T>() != nullptr);
 		};
 
 		std::vector<TBase*> GetAll()

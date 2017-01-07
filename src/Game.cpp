@@ -1,7 +1,7 @@
 #include "inc/Game.hpp"
 
 Game::Game() :
-	m_CurrentLevel(NULL),
+	m_CurrentLevel(nullptr),
 	m_Running(false),
 	m_CurrentFrame(0),
 	m_UpdateTickRate(120),
@@ -16,6 +16,7 @@ void Game::Run()
 	m_Running = true;
 	uint64_t lastFpsOut = 0;
 	uint64_t lastFpsFrame = 0;
+
 	while (m_Running) {
 		m_CurrentFrame++;
 
@@ -60,11 +61,11 @@ void Game::Stop()
 void Game::ChangeToLevel(GameLevel* level)
 {
 	// If we're on a level currently, tell the old level to cleanup
-	if (m_CurrentLevel != NULL) {
+	if (m_CurrentLevel != nullptr) {
 		m_CurrentLevel->Cleanup();
 	}
 
-	if (level != NULL) {
+	if (level != nullptr) {
 		// Set the new level
 		m_CurrentLevel = level;
 		m_CurrentLevel->SetGame(this);
@@ -75,7 +76,7 @@ void Game::ChangeToLevel(GameLevel* level)
 
 void Game::Cleanup()
 {
-	if (m_CurrentLevel != NULL) {
+	if (m_CurrentLevel != nullptr) {
 		// Trigger cleanup
 		m_CurrentLevel->Cleanup();
 

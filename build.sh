@@ -15,11 +15,14 @@ FILES=(
 	"GameLevel.cpp"
 	"GameObject.cpp"
 	"Input.cpp"
+	"Timer.cpp"
+	"Renderer.cpp"
 	"OpenGLApplication.cpp"
 	"OpenGLEventHandler.cpp"
 	"OpenGLRenderer.cpp"
 	"OpenGLWindow.cpp"
-	"Timer.cpp"
+	"graphics/OpenGLShader.cpp"
+	"graphics/BasicOpenGLShader.cpp"
 )
 
 COMPILER="g++"

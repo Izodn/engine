@@ -1,5 +1,7 @@
 #include "inc/OpenGLRenderer.hpp"
 
+#include "graphics/inc/BasicOpenGLShader.hpp"
+
 OpenGLRenderer::OpenGLRenderer()
 {
 
@@ -17,6 +19,19 @@ void OpenGLRenderer::Flush()
 
 	// Write buffer data to the screen
 	glfwSwapBuffers(m_Window);
+}
+
+void OpenGLRenderer::RegisterShader(Shader* shader)
+{
+	// Cast to OpenGLShader. Potentially dangerous
+	OpenGLShader* glShader = (OpenGLShader*)shader;
+
+	std::cout << "Compiling shader: " << (void*)glShader << std::endl;
+
+	// Compile the shader.
+	glShader->Compile();
+
+	std::cout << "Finished shader compile" << std::endl;
 }
 
 void OpenGLRenderer::Cleanup()
