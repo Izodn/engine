@@ -19,6 +19,7 @@ class GameLevel
 		GameLevel();
 		void StartObjects();
 		void UpdateObjects();
+		void RenderUpdateObjects();
 		void Cleanup();
 		void SetGame(Game*);
 		Game* GetGame();

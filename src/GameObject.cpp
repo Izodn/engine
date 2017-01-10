@@ -1,5 +1,8 @@
 #include "inc/GameObject.hpp"
 
+#include "inc/component/Component.hpp"
+#include "inc/component/RenderComponent.hpp"
+
 GameObject::GameObject()
 {
 
@@ -17,16 +20,39 @@ GameLevel* GameObject::GetLevel()
 
 void GameObject::Start()
 {
+	// Generic components
 	for (Component* component : m_Components.GetAll()) {
 		component->SetGameObject(this);
+		component->Start();
+	}
+
+	// Render components
+	for (RenderComponent* component : m_RenderComponents.GetAll()) {
+		component->SetGameObject(this);
+		component->SetRenderer(
+			m_GameLevel->GetGame()->GetWindow()->GetRenderer()
+		);
 		component->Start();
 	}
 }
 
 void GameObject::Update()
 {
+	// Generic components
 	for (Component* component : m_Components.GetAll()) {
 		component->Update();
+	}
+
+	// Render components
+	for (RenderComponent* component : m_RenderComponents.GetAll()) {
+		component->Update();
+	}
+}
+
+void GameObject::RenderUpdate()
+{
+	for (RenderComponent* component : m_RenderComponents.GetAll()) {
+		component->Render();
 	}
 }
 
@@ -40,12 +66,28 @@ Collection<Component>* GameObject::Components()
 	return &m_Components;
 }
 
+Collection<RenderComponent>* GameObject::RenderComponents()
+{
+	return &m_RenderComponents;
+}
+
 void GameObject::Cleanup()
 {
+	// Generic components
 	for (Component* component : m_Components.GetAll()) {
 		if (component != NULL) {
 			std::cout << "Deleting component: " << (void*)component << std::endl;
 			free(component);
+			std::cout << "Deleted component" << std::endl;
+		}
+	}
+
+	// Render components
+	for (RenderComponent* component : m_RenderComponents.GetAll()) {
+		if (component != NULL) {
+			std::cout << "Deleting render component: " << (void*)component << std::endl;
+			free(component);
+			std::cout << "Deleted component" << std::endl;
 		}
 	}
 }

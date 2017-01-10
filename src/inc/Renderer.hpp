@@ -10,6 +10,7 @@ class Renderer
 
 	public:
 		Collection<Shader>* Shaders();
+		virtual void Prepare() = 0;
 		virtual void Flush() = 0;
 		virtual void Cleanup() = 0;
 		virtual void RegisterShader(Shader*) = 0;

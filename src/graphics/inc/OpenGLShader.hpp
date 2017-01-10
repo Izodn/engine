@@ -17,7 +17,7 @@ class OpenGLShader : public Shader
 
 	public:
 		GLuint GetId();
-		void Compile();
+		void Init();
 
 	protected:
 		virtual GLuint CompileShader() = 0;

@@ -23,6 +23,7 @@ class OpenGLRenderer : public Renderer
 	public:
 		OpenGLRenderer();
 		void SetWindow(GLFWwindow*);
+		void Prepare();
 		void Flush();
 		void RegisterShader(Shader*);
 		void Cleanup();

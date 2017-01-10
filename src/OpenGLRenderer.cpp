@@ -12,11 +12,14 @@ void OpenGLRenderer::SetWindow(GLFWwindow* window)
 	m_Window = window;
 }
 
-void OpenGLRenderer::Flush()
+void OpenGLRenderer::Prepare()
 {
 	// Clear the screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
 
+void OpenGLRenderer::Flush()
+{
 	// Write buffer data to the screen
 	glfwSwapBuffers(m_Window);
 }
@@ -29,7 +32,7 @@ void OpenGLRenderer::RegisterShader(Shader* shader)
 	std::cout << "Compiling shader: " << (void*)glShader << std::endl;
 
 	// Compile the shader.
-	glShader->Compile();
+	glShader->Init();
 
 	std::cout << "Finished shader compile" << std::endl;
 }

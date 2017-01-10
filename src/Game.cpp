@@ -34,6 +34,12 @@ void Game::Run()
 			Input::Clear();
 		}
 
+		// Prepare the window for drawing
+		m_Renderer->Prepare();
+
+		// Render object
+		m_CurrentLevel->RenderUpdateObjects();
+
 		// Flush the graphics to the window
 		m_Renderer->Flush();
 

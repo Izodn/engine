@@ -39,6 +39,17 @@ void GameLevel::UpdateObjects()
 	}
 }
 
+void GameLevel::RenderUpdateObjects()
+{
+	for (GameObject* object : m_GameObjects) {
+		if (object != NULL) {
+			object->RenderUpdate();
+		} else {
+			std::cout << "Tried to render update NULL GameObject" << std::endl;
+		}
+	}
+}
+
 void GameLevel::Cleanup()
 {
 	for (GameObject* object : m_GameObjects) {

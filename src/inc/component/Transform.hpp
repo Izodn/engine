@@ -2,18 +2,9 @@
 
 #include "Component.hpp"
 
-class Component;
-
 class Transform : public Component
 {
 	public:
-		void Start()
-		{
-
-		};
-
-		void Update()
-		{
-
-		};
+		void Start() {};
+		void Update() {};
 };

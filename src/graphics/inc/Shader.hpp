@@ -2,5 +2,5 @@
 
 class Shader
 {
-
+	virtual void Init() = 0;
 };

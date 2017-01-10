@@ -5,12 +5,12 @@
 GLuint OpenGLShader::GetId()
 {
 	if (!m_Compiled) {
-		Compile();
+		Init();
 	}
 	return m_Id;
 }
 
-void OpenGLShader::Compile()
+void OpenGLShader::Init()
 {
 	m_Id = CompileShader();
 	m_Compiled = true;

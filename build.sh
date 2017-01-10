@@ -10,6 +10,7 @@ OUTPUT_NAME="lib$APP_NAME.so"
 #OUTPUT_NAME="$APP_NAME.dll"
 
 FILES=(
+	# Generic
 	"Component.cpp"
 	"Game.cpp"
 	"GameLevel.cpp"
@@ -17,12 +18,18 @@ FILES=(
 	"Input.cpp"
 	"Timer.cpp"
 	"Renderer.cpp"
+
+	# OpenGL
 	"OpenGLApplication.cpp"
 	"OpenGLEventHandler.cpp"
 	"OpenGLRenderer.cpp"
 	"OpenGLWindow.cpp"
 	"graphics/OpenGLShader.cpp"
 	"graphics/BasicOpenGLShader.cpp"
+
+	# Render components
+	"RenderComponent.cpp"
+	"FillSquare.cpp"
 )
 
 COMPILER="g++"
