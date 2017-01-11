@@ -2,8 +2,8 @@
 
 #include "Game.hpp"
 #include "EventHandler.hpp"
-#include "Renderer.hpp"
-#include "Window.hpp"
+#include "graphics/Renderer.hpp"
+#include "graphics/Window.hpp"
 
 class Game;
 

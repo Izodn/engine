@@ -1,6 +1,6 @@
-#include "inc/component/RenderComponent.hpp"
+#include "RenderComponent.hpp"
 
-#include "inc/GameObject.hpp"
+#include "../GameObject.hpp"
 
 void RenderComponent::Render()
 {

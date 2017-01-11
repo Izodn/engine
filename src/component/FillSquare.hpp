@@ -2,8 +2,8 @@
 
 #include "RenderComponent.hpp"
 
-#include "../../graphics/inc/OpenGLShader.hpp"
-#include "../OpenGLRenderer.hpp"
+#include "../graphics/shader/opengl/OpenGLShader.hpp"
+#include "../graphics/opengl/OpenGLRenderer.hpp"
 
 // GLEW
 #define GLEW_STATIC

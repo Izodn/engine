@@ -1,6 +1,4 @@
-#include "inc/BasicOpenGLShader.hpp"
-
-#include <iostream>
+#include "BasicOpenGLShader.hpp"
 
 GLuint BasicOpenGLShader::CompileShader()
 {

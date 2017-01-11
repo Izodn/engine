@@ -7,13 +7,13 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
-#include "Application.hpp"
-#include "EventHandler.hpp"
-#include "Renderer.hpp"
-#include "Window.hpp"
-#include "OpenGLWindow.hpp"
+#include "../Application.hpp"
+#include "../EventHandler.hpp"
+#include "../graphics/Renderer.hpp"
+#include "../graphics/Window.hpp"
+#include "../graphics/opengl/OpenGLWindow.hpp"
 #include "OpenGLEventHandler.hpp"
-#include "Game.hpp"
+#include "../Game.hpp"
 
 class Application;
 class EventHandler;
@@ -26,6 +26,5 @@ class Game;
 class OpenGLApplication : public Application
 {
 	public:
-		OpenGLApplication();
 		void Setup(Game*, EventHandler**, Renderer**, Window**);
 };

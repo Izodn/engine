@@ -16,7 +16,6 @@ class GameLevel
 		Game* m_Game;
 
 	public:
-		GameLevel();
 		void StartObjects();
 		void UpdateObjects();
 		void RenderUpdateObjects();

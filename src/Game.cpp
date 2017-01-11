@@ -1,4 +1,4 @@
-#include "inc/Game.hpp"
+#include "Game.hpp"
 
 Game::Game() :
 	m_CurrentLevel(nullptr),
@@ -89,7 +89,7 @@ void Game::Cleanup()
 		// Actually free the memory
 		std::cout << "Deleting level: " << (void*)m_CurrentLevel << std::endl;
 		free(m_CurrentLevel);
-		std::cout << "Level successfully deleted: " << std::endl;
+		std::cout << "Level successfully deleted" << std::endl;
 	}
 	m_Renderer->Cleanup();
 }

@@ -1,6 +1,6 @@
-#include "inc/component/Component.hpp"
+#include "Component.hpp"
 
-#include "inc/GameObject.hpp"
+#include "../GameObject.hpp"
 
 void Component::SetGameObject(GameObject* gameObject)
 {

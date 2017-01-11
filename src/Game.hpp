@@ -3,11 +3,11 @@
 #include <iostream>
 
 #include "EventHandler.hpp"
-#include "Renderer.hpp"
-#include "Window.hpp"
+#include "graphics/Renderer.hpp"
+#include "graphics/Window.hpp"
 #include "GameLevel.hpp"
-#include "Timer.hpp"
-#include "OpenGLApplication.hpp"
+#include "core/Timer.hpp"
+#include "opengl/OpenGLApplication.hpp"
 
 class EventHandler;
 class Renderer;

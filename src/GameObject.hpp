@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-#include "Collection.hpp"
+#include "core/Collection.hpp"
 #include "GameLevel.hpp"
 
 class Component;
@@ -19,7 +19,6 @@ class GameObject
 		GameLevel* m_GameLevel;
 
 	public:
-		GameObject();
 		void SetName(std::string);
 		Collection<Component>* Components();
 		Collection<RenderComponent>* RenderComponents();

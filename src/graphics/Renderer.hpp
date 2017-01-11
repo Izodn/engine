@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Collection.hpp"
-#include "../graphics/inc/Shader.hpp"
+#include "../core/Collection.hpp"
+#include "shader/Shader.hpp"
 
 class Renderer
 {

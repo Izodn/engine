@@ -1,9 +1,4 @@
-#include "inc/GameLevel.hpp"
-
-GameLevel::GameLevel()
-{
-
-}
+#include "GameLevel.hpp"
 
 void GameLevel::SetGame(Game* game)
 {
@@ -60,7 +55,7 @@ void GameLevel::Cleanup()
 			// Actually free memory
 			std::cout << "Deleting object: " << (void*)object << std::endl;
 			free(object);
-			std::cout << "Object successfully deleted: " << std::endl;
+			std::cout << "Object successfully deleted" << std::endl;
 		} else {
 			std::cout << "Tried to remove NULL GameObject" << std::endl;
 		}

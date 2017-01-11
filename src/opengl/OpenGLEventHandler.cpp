@@ -1,9 +1,4 @@
-#include "inc/OpenGLEventHandler.hpp"
-
-OpenGLEventHandler::OpenGLEventHandler()
-{
-
-}
+#include "OpenGLEventHandler.hpp"
 
 OpenGLEventHandler* OpenGLEventHandler::Self()
 {

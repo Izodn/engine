@@ -1,4 +1,4 @@
-#include "inc/component/FillSquare.hpp"
+#include "FillSquare.hpp"
 
 void FillSquare::RenderUpdate(Renderer* renderer)
 {

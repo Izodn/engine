@@ -10,9 +10,9 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
-#include "Input.hpp"
-#include "EventHandler.hpp"
-#include "Game.hpp"
+#include "../core/Input.hpp"
+#include "../EventHandler.hpp"
+#include "../Game.hpp"
 
 class EventHandler;
 class Game;
@@ -90,7 +90,6 @@ class OpenGLEventHandler : public EventHandler
 		static void stKeyCallback(GLFWwindow*, int, int, int, int);
 
 	public:
-		OpenGLEventHandler();
 		void MouseButtonCallback(int, int);
 		void KeyCallback(int, int);
 		void SetWindow(GLFWwindow*);

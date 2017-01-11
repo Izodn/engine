@@ -10,8 +10,8 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
-#include "Window.hpp"
-#include "Renderer.hpp"
+#include "../Window.hpp"
+#include "../Renderer.hpp"
 #include "OpenGLRenderer.hpp"
 
 class Window;

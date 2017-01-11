@@ -1,4 +1,4 @@
-#include "inc/OpenGLWindow.hpp"
+#include "OpenGLWindow.hpp"
 
 OpenGLWindow::OpenGLWindow(int width, int height, std::string title)
 {

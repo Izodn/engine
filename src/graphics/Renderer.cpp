@@ -1,4 +1,4 @@
-#include "inc/Renderer.hpp"
+#include "Renderer.hpp"
 
 Collection<Shader>* Renderer::Shaders()
 {

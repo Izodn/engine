@@ -1,6 +1,4 @@
-#include "inc/OpenGLRenderer.hpp"
-
-#include "graphics/inc/BasicOpenGLShader.hpp"
+#include "OpenGLRenderer.hpp"
 
 OpenGLRenderer::OpenGLRenderer()
 {

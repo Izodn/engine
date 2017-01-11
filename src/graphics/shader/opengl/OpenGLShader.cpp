@@ -1,6 +1,4 @@
-#include "inc/OpenGLShader.hpp"
-
-#include <iostream>
+#include "OpenGLShader.hpp"
 
 GLuint OpenGLShader::GetId()
 {

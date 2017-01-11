@@ -10,9 +10,9 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
-#include "Renderer.hpp"
-#include "../graphics/inc/OpenGLShader.hpp"
-#include "Collection.hpp"
+#include "../Renderer.hpp"
+#include "../shader/opengl/OpenGLShader.hpp"
+#include "../../core/Collection.hpp"
 
 class OpenGLRenderer : public Renderer
 {

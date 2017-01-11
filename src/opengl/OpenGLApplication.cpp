@@ -1,9 +1,4 @@
-#include "inc/OpenGLApplication.hpp"
-
-OpenGLApplication::OpenGLApplication()
-{
-
-}
+#include "OpenGLApplication.hpp"
 
 void OpenGLApplication::Setup(Game* game, EventHandler** handler, Renderer** renderer, Window** window)
 {

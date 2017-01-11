@@ -1,12 +1,7 @@
-#include "inc/GameObject.hpp"
+#include "GameObject.hpp"
 
-#include "inc/component/Component.hpp"
-#include "inc/component/RenderComponent.hpp"
-
-GameObject::GameObject()
-{
-
-}
+#include "component/Component.hpp"
+#include "component/RenderComponent.hpp"
 
 void GameObject::SetLevel(GameLevel* gameLevel)
 {

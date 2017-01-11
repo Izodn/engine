@@ -1,4 +1,4 @@
-#include "inc/Timer.hpp"
+#include "Timer.hpp"
 
 Timer::Timer() : m_StartTick(0)
 {

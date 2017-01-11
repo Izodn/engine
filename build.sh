@@ -11,25 +11,25 @@ OUTPUT_NAME="lib$APP_NAME.so"
 
 FILES=(
 	# Generic
-	"Component.cpp"
+	"component/Component.cpp"
 	"Game.cpp"
 	"GameLevel.cpp"
 	"GameObject.cpp"
-	"Input.cpp"
-	"Timer.cpp"
-	"Renderer.cpp"
+	"core/Input.cpp"
+	"core/Timer.cpp"
+	"graphics/Renderer.cpp"
 
 	# OpenGL
-	"OpenGLApplication.cpp"
-	"OpenGLEventHandler.cpp"
-	"OpenGLRenderer.cpp"
-	"OpenGLWindow.cpp"
-	"graphics/OpenGLShader.cpp"
-	"graphics/BasicOpenGLShader.cpp"
+	"opengl/OpenGLApplication.cpp"
+	"opengl/OpenGLEventHandler.cpp"
+	"graphics/opengl/OpenGLRenderer.cpp"
+	"graphics/opengl/OpenGLWindow.cpp"
+	"graphics/shader/opengl/OpenGLShader.cpp"
+	"graphics/shader/opengl/BasicOpenGLShader.cpp"
 
 	# Render components
-	"RenderComponent.cpp"
-	"FillSquare.cpp"
+	"component/RenderComponent.cpp"
+	"component/FillSquare.cpp"
 )
 
 COMPILER="g++"

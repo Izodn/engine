@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "Transform.hpp"
-#include "../Renderer.hpp"
+#include "../graphics/Renderer.hpp"
 
 class RenderComponent : virtual public Component
 {
