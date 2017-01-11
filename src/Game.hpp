@@ -1,13 +1,12 @@
 #pragma once
 
-#include <iostream>
-
 #include "EventHandler.hpp"
 #include "graphics/Renderer.hpp"
 #include "graphics/Window.hpp"
 #include "GameLevel.hpp"
 #include "core/Timer.hpp"
 #include "opengl/OpenGLApplication.hpp"
+#include "core/Logger.hpp"
 
 class EventHandler;
 class Renderer;

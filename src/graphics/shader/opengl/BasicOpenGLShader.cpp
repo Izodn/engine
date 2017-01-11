@@ -26,6 +26,6 @@ GLuint BasicOpenGLShader::CompileShader()
 	glAttachShader(shaderId, vs);
 	glAttachShader(shaderId, fs);
 	glLinkProgram(shaderId);
-	std::cout << "shaderId: " << shaderId << std::endl;
+	Logger() << "shaderId: " << shaderId << "\n";
 	return shaderId;
 }

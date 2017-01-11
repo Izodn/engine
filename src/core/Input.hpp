@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <vector>
 #include <string>
-#include <iostream>
 
 class Input
 {
@@ -86,7 +85,4 @@ class Input
 		static bool Released(Input::Key);
 		static void Release(Input::Key);
 		static double GetAxis(Input::Axis);
-
-	public:
-		Input();
 };

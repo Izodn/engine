@@ -11,12 +11,12 @@ void RenderComponent::Render()
 		if (m_GameObject->Components()->Has<Transform>()) {
 			RenderUpdate(m_Renderer);
 		} else {
-			std::cout << "Cannot render without Transform component" << std::endl;
+			Logger() << "Cannot render without Transform component" << "\n";
 		}
 	} else if (m_GameObject == nullptr) {
-		std::cout << "m_GameObject == nullptr" << std::endl;
+		Logger() << "m_GameObject == nullptr" << "\n";
 	} else if (m_Renderer == nullptr) {
-		std::cout << "m_Renderer == nullptr" << std::endl;
+		Logger() << "m_Renderer == nullptr" << "\n";
 	}
 }
 
@@ -25,7 +25,7 @@ void RenderComponent::SetRenderer(Renderer* renderer)
 	if (renderer != nullptr) {
 		m_Renderer = renderer;
 	} else {
-		std::cout << "Tried to set null renderer" << std::endl;
+		Logger() << "Tried to set null renderer" << "\n";
 	}
 }
 
@@ -34,6 +34,6 @@ void RenderComponent::SetShader(Shader* shader)
 	if (shader != nullptr) {
 		m_Shader = shader;
 	} else {
-		std::cout << "Tried to set null shader" << std::endl;
+		Logger() << "Tried to set null shader" << "\n";
 	}
 }

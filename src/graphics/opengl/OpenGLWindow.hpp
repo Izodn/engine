@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <string>
 
 // GLEW
@@ -13,6 +12,7 @@
 #include "../Window.hpp"
 #include "../Renderer.hpp"
 #include "OpenGLRenderer.hpp"
+#include "../../core/Logger.hpp"
 
 class Window;
 class Renderer;

@@ -13,7 +13,7 @@ OpenGLWindow::OpenGLWindow(int width, int height, std::string title)
 
 	m_Window = glfwCreateWindow(m_Width, m_Height, m_Title.c_str(), nullptr, nullptr);
 	if (m_Window == nullptr) {
-		std::cout << "Failed to create GLFW window" << std::endl;
+		Logger() << "Failed to create GLFW window" << "\n";
 		glfwTerminate();
 	}
 	glfwMakeContextCurrent(m_Window);
@@ -21,7 +21,7 @@ OpenGLWindow::OpenGLWindow(int width, int height, std::string title)
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		std::cout << "Failed to initialize GLEW" << std::endl;
+		Logger() << "Failed to initialize GLEW" << "\n";
 	}
 
 	glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);

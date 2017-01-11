@@ -12,13 +12,13 @@ Game* GameLevel::GetGame()
 
 void GameLevel::StartObjects()
 {
-	std::cout << "GameLevel::StartObjects" << std::endl;
+	Logger() << "GameLevel::StartObjects" << "\n";
 	for (GameObject* object : m_GameObjects) {
 		if (object != NULL) {
 			object->SetLevel(this);
 			object->Start();
 		} else {
-			std::cout << "Tried to start NULL GameObject" << std::endl;
+			Logger() << "Tried to start NULL GameObject" << "\n";
 		}
 	}
 }
@@ -29,7 +29,7 @@ void GameLevel::UpdateObjects()
 		if (object != NULL) {
 			object->Update();
 		} else {
-			std::cout << "Tried to update NULL GameObject" << std::endl;
+			Logger() << "Tried to update NULL GameObject" << "\n";
 		}
 	}
 }
@@ -40,7 +40,7 @@ void GameLevel::RenderUpdateObjects()
 		if (object != NULL) {
 			object->RenderUpdate();
 		} else {
-			std::cout << "Tried to render update NULL GameObject" << std::endl;
+			Logger() << "Tried to render update NULL GameObject" << "\n";
 		}
 	}
 }
@@ -53,11 +53,11 @@ void GameLevel::Cleanup()
 			object->Cleanup();
 
 			// Actually free memory
-			std::cout << "Deleting object: " << (void*)object << std::endl;
+			Logger() << "Deleting object: " << (void*)object << "\n";
 			free(object);
-			std::cout << "Object successfully deleted" << std::endl;
+			Logger() << "Object successfully deleted" << "\n";
 		} else {
-			std::cout << "Tried to remove NULL GameObject" << std::endl;
+			Logger() << "Tried to remove NULL GameObject" << "\n";
 		}
 	}
 }

@@ -27,16 +27,16 @@ void OpenGLRenderer::RegisterShader(Shader* shader)
 	// Cast to OpenGLShader. Potentially dangerous
 	OpenGLShader* glShader = (OpenGLShader*)shader;
 
-	std::cout << "Compiling shader: " << (void*)glShader << std::endl;
+	Logger() << "Compiling shader: " << (void*)glShader << "\n";
 
 	// Compile the shader.
 	glShader->Init();
 
-	std::cout << "Finished shader compile" << std::endl;
+	Logger() << "Finished shader compile" << "\n";
 }
 
 void OpenGLRenderer::Cleanup()
 {
-	std::cout << "OpenGLRenderer::Cleanup()" << std::endl;
+	Logger() << "OpenGLRenderer::Cleanup()" << "\n";
 	glfwTerminate();
 }

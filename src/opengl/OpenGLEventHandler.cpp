@@ -21,16 +21,16 @@ void OpenGLEventHandler::MouseButtonCallback(int button, int action)
 	auto got = m_MouseButtonPairs.find(button);
 	if (got != m_MouseButtonPairs.end()) {
 		if (action == 1) {
-			std::cout << "Click press: " << got->second << std::endl;
+			Logger() << "Click press: " << got->second << "\n";
 			Input::Press(got->second);
 		} else if (action == 0) {
-			std::cout << "Click release: " << got->second << std::endl;
+			Logger() << "Click release: " << got->second << "\n";
 			Input::Release(got->second);
 		}
 	} else {
-		std::cout
+		Logger()
 			<< "Unregistered click:" << button
-			<< " action:" << action << std::endl;
+			<< " action:" << action << "\n";
 	}
 }
 
@@ -49,16 +49,16 @@ void OpenGLEventHandler::KeyCallback(int button, int action)
 	auto got = m_KeyPairs.find(button);
 	if (got != m_KeyPairs.end()) {
 		if (action == 1) {
-			std::cout << "Key press: " << button << std::endl;
+			Logger() << "Key press: " << button << "\n";
 			Input::Press(got->second);
 		} else if (action == 0) {
-			std::cout << "Key Release: " << button << std::endl;
+			Logger() << "Key Release: " << button << "\n";
 			Input::Release(got->second);
 		}
 	} else {
-		std::cout
+		Logger()
 			<< "Unregistered button:" << button
-			<< " action:" << action << std::endl;
+			<< " action:" << action << "\n";
 	}
 }
 

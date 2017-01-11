@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <unordered_map>
 
 // GLEW
@@ -13,6 +12,7 @@
 #include "../core/Input.hpp"
 #include "../EventHandler.hpp"
 #include "../Game.hpp"
+#include "../core/Logger.hpp"
 
 class EventHandler;
 class Game;

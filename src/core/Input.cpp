@@ -1,10 +1,5 @@
 #include "Input.hpp"
 
-Input::Input()
-{
-
-}
-
 Input* Input::Self()
 {
 	static Input* instance = new Input();

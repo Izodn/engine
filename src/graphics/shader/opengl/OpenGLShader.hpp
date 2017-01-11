@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 
 // GLEW
 #define GLEW_STATIC

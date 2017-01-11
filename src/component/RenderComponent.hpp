@@ -1,9 +1,8 @@
 #pragma once
 
-#include <iostream>
-
 #include "Transform.hpp"
 #include "../graphics/Renderer.hpp"
+#include "../core/Logger.hpp"
 
 class RenderComponent : virtual public Component
 {

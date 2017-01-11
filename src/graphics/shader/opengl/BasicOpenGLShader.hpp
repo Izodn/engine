@@ -1,8 +1,7 @@
 #pragma once
 
-#include <iostream>
-
 #include "OpenGLShader.hpp"
+#include "../../../core/Logger.hpp"
 
 class BasicOpenGLShader : public OpenGLShader
 {

@@ -2,7 +2,6 @@
 
 #include <chrono>
 #include <thread>
-#include <iostream>
 
 class Timer
 {

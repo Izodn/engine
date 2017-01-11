@@ -48,19 +48,19 @@ void Game::Run()
 			double fps = (m_CurrentFrame - lastFpsFrame);
 			fps /= (tick - lastFpsOut) / 1000;
 
-			std::cout << "FPS: " << fps << std::endl;
+			Logger() << "FPS: " << fps << "\n";
 			lastFpsOut = tick;
 			lastFpsFrame = m_CurrentFrame;
 		}
 	}
 
-	std::cout << "Initiating cleanup" << std::endl;
+	Logger() << "Initiating cleanup" << "\n";
 	Cleanup();
 }
 
 void Game::Stop()
 {
-	std::cout << "Game::Stop() called" << std::endl;
+	Logger() << "Game::Stop() called" << "\n";
 	m_Running = false;
 }
 
@@ -87,9 +87,9 @@ void Game::Cleanup()
 		m_CurrentLevel->Cleanup();
 
 		// Actually free the memory
-		std::cout << "Deleting level: " << (void*)m_CurrentLevel << std::endl;
+		Logger() << "Deleting level: " << (void*)m_CurrentLevel << "\n";
 		free(m_CurrentLevel);
-		std::cout << "Level successfully deleted" << std::endl;
+		Logger() << "Level successfully deleted" << "\n";
 	}
 	m_Renderer->Cleanup();
 }

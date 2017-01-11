@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include <iostream>
 
 #include "core/Collection.hpp"
+#include "core/Logger.hpp"
 #include "GameLevel.hpp"
 
 class Component;

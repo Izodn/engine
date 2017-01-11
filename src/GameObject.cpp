@@ -71,18 +71,18 @@ void GameObject::Cleanup()
 	// Generic components
 	for (Component* component : m_Components.GetAll()) {
 		if (component != NULL) {
-			std::cout << "Deleting component: " << (void*)component << std::endl;
+			Logger() << "Deleting component: " << (void*)component << "\n";
 			free(component);
-			std::cout << "Deleted component" << std::endl;
+			Logger() << "Deleted component" << "\n";
 		}
 	}
 
 	// Render components
 	for (RenderComponent* component : m_RenderComponents.GetAll()) {
 		if (component != NULL) {
-			std::cout << "Deleting render component: " << (void*)component << std::endl;
+			Logger() << "Deleting render component: " << (void*)component << "\n";
 			free(component);
-			std::cout << "Deleted component" << std::endl;
+			Logger() << "Deleted component" << "\n";
 		}
 	}
 }
