@@ -16,7 +16,7 @@ class GameLevel
 
 	public:
 		void StartObjects();
-		void UpdateObjects();
+		void UpdateObjects(double);
 		void RenderUpdateObjects();
 		void Cleanup();
 		void SetGame(Game*);

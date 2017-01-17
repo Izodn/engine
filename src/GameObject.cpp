@@ -2,6 +2,13 @@
 
 #include "component/Component.hpp"
 #include "component/RenderComponent.hpp"
+#include "component/Transform.hpp"
+
+GameObject::GameObject()
+{
+	m_Components.Add<Transform>();
+	m_Transform = m_Components.Get<Transform>();
+}
 
 void GameObject::SetLevel(GameLevel* gameLevel)
 {
@@ -31,16 +38,16 @@ void GameObject::Start()
 	}
 }
 
-void GameObject::Update()
+void GameObject::Update(double deltaTime)
 {
 	// Generic components
 	for (Component* component : m_Components.GetAll()) {
-		component->Update();
+		component->Update(deltaTime);
 	}
 
 	// Render components
 	for (RenderComponent* component : m_RenderComponents.GetAll()) {
-		component->Update();
+		component->Update(deltaTime);
 	}
 }
 
@@ -64,6 +71,11 @@ Collection<Component>* GameObject::Components()
 Collection<RenderComponent>* GameObject::RenderComponents()
 {
 	return &m_RenderComponents;
+}
+
+Transform* GameObject::GetTransform()
+{
+	return m_Transform;
 }
 
 void GameObject::Cleanup()

@@ -16,6 +16,6 @@ class FillSquare : public RenderComponent
 {
 	public:
 		void Start() {};
-		void Update() {};
+		void Update(double) {};
 		void RenderUpdate(Renderer*);
 };

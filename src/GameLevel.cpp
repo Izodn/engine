@@ -23,11 +23,11 @@ void GameLevel::StartObjects()
 	}
 }
 
-void GameLevel::UpdateObjects()
+void GameLevel::UpdateObjects(double deltaTime)
 {
 	for (GameObject* object : m_GameObjects) {
 		if (object != NULL) {
-			object->Update();
+			object->Update(deltaTime);
 		} else {
 			Logger() << "Tried to update NULL GameObject" << "\n";
 		}

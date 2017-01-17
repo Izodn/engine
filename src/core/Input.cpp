@@ -6,10 +6,33 @@ Input* Input::Self()
 	return instance;
 };
 
-void Input::Clear()
+void Input::Sync()
+{
+	// If a pressed character is in released, remove it from pressed
+	for (auto &elem : Self()->m_Released) {
+		auto got = std::find(
+			Self()->m_Pressed.begin(),
+			Self()->m_Pressed.end(),
+			elem
+		);
+		Self()->m_Pressed.erase(got);
+	}
+}
+
+void Input::ClearPressed()
 {
 	Self()->m_Pressed.clear();
+}
+
+void Input::ClearReleased()
+{
 	Self()->m_Released.clear();
+}
+
+void Input::Clear()
+{
+	Self()->ClearPressed();
+	Self()->ClearReleased();
 }
 
 double Input::GetAxis(Input::Axis axis)

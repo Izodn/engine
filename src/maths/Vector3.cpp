@@ -132,11 +132,11 @@ Vector3 Vector3::operator+(double rh)
 }
 Vector3 Vector3::operator+=(Vector3 rh)
 {
-	return *this + rh;
+	return *this = *this + rh;
 }
 Vector3 Vector3::operator+=(double rh)
 {
-	return *this + rh;
+	return *this = *this + rh;
 }
 
 Vector3 Vector3::operator-(Vector3 rh)
@@ -153,11 +153,11 @@ Vector3 Vector3::operator-(double rh)
 }
 Vector3 Vector3::operator-=(Vector3 rh)
 {
-	return *this - rh;
+	return *this = *this - rh;
 }
 Vector3 Vector3::operator-=(double rh)
 {
-	return *this - rh;
+	return *this = *this - rh;
 }
 
 Vector3 Vector3::operator*(Vector3 rh)
@@ -174,11 +174,11 @@ Vector3 Vector3::operator*(double rh)
 }
 Vector3 Vector3::operator*=(Vector3 rh)
 {
-	return *this * rh;
+	return *this = *this * rh;
 }
 Vector3 Vector3::operator*=(double rh)
 {
-	return *this * rh;
+	return *this = *this * rh;
 }
 
 Vector3 Vector3::operator/(Vector3 rh)
@@ -195,11 +195,11 @@ Vector3 Vector3::operator/(double rh)
 }
 Vector3 Vector3::operator/=(Vector3 rh)
 {
-	return *this / rh;
+	return *this = *this / rh;
 }
 Vector3 Vector3::operator/=(double rh)
 {
-	return *this / rh;
+	return *this = *this / rh;
 }
 
 bool Vector3::operator==(Vector3 rh)

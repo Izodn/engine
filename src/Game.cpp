@@ -27,11 +27,12 @@ void Game::Run()
 		uint64_t tick = m_Timer.GetTick();
 		uint64_t deltaTick = tick - m_LastUpdateTick;
 		if (deltaTick >= (1000 / m_UpdateTickRate)) {
-			m_CurrentLevel->UpdateObjects();
+			m_CurrentLevel->UpdateObjects((double)deltaTick / 1000.0f);
 			m_LastUpdateTick = tick;
 
-			// Clear all inputs
-			Input::Clear();
+			// Sync input handling for correct pressed/released triggers
+			Input::Sync();
+			Input::ClearReleased();
 		}
 
 		// Prepare the window for drawing

@@ -79,6 +79,9 @@ class Input
 
 	public:
 		static Input* Self();
+		static void Sync();
+		static void ClearPressed();
+		static void ClearReleased();
 		static void Clear();
 		static void Press(Input::Key);
 		static bool Pressed(Input::Key);

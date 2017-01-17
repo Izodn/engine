@@ -18,7 +18,7 @@ void FillSquare::RenderUpdate(Renderer* renderer)
 			GLuint indices[] = {
 				0, 1, 2, // First triangle
 				0, 2, 3  // Second triangle
-			}; 
+			};
 
 			GLuint VBO, VAO, EBO;
 			glGenVertexArrays(1, &VAO);
