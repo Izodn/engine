@@ -10,6 +10,9 @@ OUTPUT_NAME="lib$APP_NAME.so"
 #OUTPUT_NAME="$APP_NAME.dll"
 
 FILES=(
+	# Maths
+	"maths/Vector3.cpp"
+
 	# Generic
 	"component/Component.cpp"
 	"Game.cpp"
