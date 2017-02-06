@@ -15,6 +15,11 @@ Quaternion::Quaternion(const Vector3& vec, double w)
 {
 	Quaternion(vec.GetX(), vec.GetY(), vec.GetZ(), w);
 }
+Quaternion::Quaternion(const Vector3& vec)
+{
+	Quaternion quat = Quaternion::FromEulerAngles(vec);
+	Quaternion(quat.GetX(), quat.GetY(), quat.GetZ(), quat.GetW());
+}
 Quaternion::Quaternion(double x, double y, double z, double w)
 {
 	m_X = x;
@@ -154,8 +159,8 @@ Vector3 Quaternion::GetAxis(const Quaternion& quat)
 	double x2 = x1 * x1;
 
 	// Devide by 0 check
-	if (x1 < 0.0000001f || x2 == 0.0f) {
-		return Vector3(1.0f, 0.0f, 0.0f);
+	if (x2 == 0.0f) {
+		return Vector3::Forward();
 	}
 
 	return Vector3(quat.GetX(), quat.GetY(), quat.GetZ()) / x2;
@@ -226,6 +231,10 @@ Quaternion Quaternion::LookAt(const Vector3& origin, const Vector3& target)
 		acos(dot)
 	);
 }
+double Quaternion::Angle(const Quaternion& quat)
+{
+	return 2 * acos(quat.GetW());
+}
 
 // Methods
 double Quaternion::Norm() const
@@ -259,6 +268,10 @@ Vector3 Quaternion::Rotate(const Vector3& vec) const
 double Quaternion::Dot(const Quaternion& target) const
 {
 	return Dot(*this, target);
+}
+double Quaternion::Angle() const
+{
+	return Quaternion::Angle(*this);
 }
 
 // Operators

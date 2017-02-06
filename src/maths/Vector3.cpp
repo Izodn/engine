@@ -86,7 +86,7 @@ double Vector3::Angle(const Vector3& vec1, const Vector3& vec2)
 
 	// if devide by zero, then must be a 90-degree angle
 	if (denominator == 0.0f) {
-		return 90.0f;
+		return 0.0f;
 	}
 
 	return acos(
@@ -95,7 +95,7 @@ double Vector3::Angle(const Vector3& vec1, const Vector3& vec2)
 			(vec1.GetY() * vec2.GetY()) +
 			(vec1.GetZ() * vec2.GetZ())
 		) / denominator
-	) * 180 / (/*PI*/4*atan(1));
+	);
 }
 double Vector3::Dot(const Vector3& vec1, const Vector3& vec2)
 {

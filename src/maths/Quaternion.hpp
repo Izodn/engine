@@ -16,6 +16,7 @@ class Quaternion
 		Quaternion();
 		Quaternion(double);
 		Quaternion(const Vector3&, double);
+		Quaternion(const Vector3&);
 		Quaternion(double, double, double, double);
 
 	// Getters/Setters
@@ -45,6 +46,7 @@ class Quaternion
 		static Vector3 Rotate(const Quaternion&, const Vector3&);
 		static double Dot(const Quaternion&, const Quaternion&);
 		static Quaternion LookAt(const Vector3&, const Vector3&);
+		static double Angle(const Quaternion&);
 
 	// Methods
 	public:
@@ -56,6 +58,7 @@ class Quaternion
 		Vector3 GetAxis() const;
 		Vector3 Rotate(const Vector3&) const;
 		double Dot(const Quaternion&) const;
+		double Angle() const;
 
 	// Operators
 	public:

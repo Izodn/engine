@@ -2,6 +2,7 @@
 
 #include "SOIL/SOIL.h"
 
+#include "../GameObject.hpp"
 
 void TestGL::RenderStart(Renderer* renderer)
 {
@@ -170,7 +171,10 @@ void TestGL::RenderUpdate(Renderer* renderer)
 		if (dynamic_cast<OpenGLShader*>(m_Shader)) {
 			OpenGLShader* glShader = (OpenGLShader*) m_Shader;
 
-			glUseProgram(glShader->GetId());
+			// Reference the quaternion in the form of angle & axis for GL
+			Quaternion* quat = m_GameObject->GetTransform()->GetRotation();
+			Vector3 axis = quat->GetAxis();
+			double angle = quat->Angle();
 
 			// Texture 1
 			glActiveTexture(GL_TEXTURE0);
@@ -187,6 +191,20 @@ void TestGL::RenderUpdate(Renderer* renderer)
 				glGetUniformLocation(glShader->GetId(), "ourTexture2"),
 				1
 			);
+
+			glUseProgram(glShader->GetId());
+
+			// Transform
+			glm::mat4 trans;
+			trans = glm::rotate(
+				trans,
+				(float)angle,
+				glm::vec3((float)axis.GetX(), (float)axis.GetY(), (float)axis.GetZ())
+			);
+
+			// Get matrix's uniform location and set matrix
+			GLint transformLoc = glGetUniformLocation(glShader->GetId(), "transform");
+			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
 			glBindVertexArray(m_VAO);
 			{

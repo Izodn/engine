@@ -32,6 +32,9 @@ FILES=(
 	"graphics/shader/opengl/BasicOpenGLShader.cpp"
 	"graphics/shader/opengl/TextureOpenGLShader.cpp"
 
+	# Components
+	"component/Transform.cpp"
+
 	# Render components
 	"component/RenderComponent.cpp"
 	"component/FillSquare.cpp"
