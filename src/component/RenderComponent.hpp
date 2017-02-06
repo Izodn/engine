@@ -20,4 +20,7 @@ class RenderComponent : virtual public Component
 
 	protected:
 		virtual void RenderUpdate(Renderer*) = 0;
+
+	public:
+		virtual void RenderStart(Renderer*) = 0;
 };

@@ -24,6 +24,7 @@ void RenderComponent::SetRenderer(Renderer* renderer)
 {
 	if (renderer != nullptr) {
 		m_Renderer = renderer;
+		RenderStart(m_Renderer);
 	} else {
 		Logger() << "Tried to set null renderer" << "\n";
 	}

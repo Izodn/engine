@@ -20,51 +20,62 @@ class Vector3
 		Vector3 SetX(double);
 		Vector3 SetY(double);
 		Vector3 SetZ(double);
-		double GetX();
-		double GetY();
-		double GetZ();
+		double GetX() const;
+		double GetY() const;
+		double GetZ() const;
 
-	// Methods
+	// Default Vectors
 	public:
-		double Length();
-		Vector3 Normalize();
-		Vector3 Normalized();
-		double Distance(Vector3);
-		double Angle(Vector3);
-		double Dot(Vector3);
-		Vector3 Cross(Vector3);
+		static Vector3 Forward();
+		static Vector3 Up();
+		static Vector3 Right();
 
 	// Static methods
 	public:
-		static double Distance(Vector3, Vector3);
-		static double Angle(Vector3, Vector3);
-		static double Dot(Vector3, Vector3);
-		static Vector3 Cross(Vector3, Vector3);
+		static double Length(const Vector3&);
+		static Vector3 Normalized(const Vector3&);
+		static Vector3 Normalize(Vector3);
+		static double Distance(const Vector3&, const Vector3&);
+		static double Angle(const Vector3&, const Vector3&);
+		static double Dot(const Vector3&, const Vector3&);
+		static Vector3 Cross(const Vector3&, const Vector3&);
+
+	// Methods
+	public:
+		double Length() const;
+		Vector3 Normalized() const;
+		Vector3 Normalize();
+		double Distance(const Vector3&) const;
+		double Angle(const Vector3&) const;
+		double Dot(const Vector3&) const;
+		Vector3 Cross(const Vector3&) const;
 
 	// Operators
 	public:
-		Vector3 operator+(Vector3);
-		Vector3 operator+(double);
-		Vector3 operator+=(Vector3);
+		Vector3 operator=(const Vector3&);
+
+		Vector3 operator+(const Vector3&) const;
+		Vector3 operator+(double) const;
+		Vector3 operator+=(const Vector3&);
 		Vector3 operator+=(double);
 
-		Vector3 operator-(Vector3);
-		Vector3 operator-(double);
-		Vector3 operator-=(Vector3);
+		Vector3 operator-(const Vector3&) const;
+		Vector3 operator-(double) const;
+		Vector3 operator-=(const Vector3&);
 		Vector3 operator-=(double);
 
-		Vector3 operator*(Vector3);
-		Vector3 operator*(double);
-		Vector3 operator*=(Vector3);
+		Vector3 operator*(const Vector3&) const;
+		Vector3 operator*(double) const;
+		Vector3 operator*=(const Vector3&);
 		Vector3 operator*=(double);
 
-		Vector3 operator/(Vector3);
-		Vector3 operator/(double);
-		Vector3 operator/=(Vector3);
+		Vector3 operator/(const Vector3&) const;
+		Vector3 operator/(double) const;
+		Vector3 operator/=(const Vector3&);
 		Vector3 operator/=(double);
 
-		bool operator==(Vector3);
-		bool operator!=(Vector3);
+		bool operator==(const Vector3&) const;
+		bool operator!=(const Vector3&) const;
 
-		operator std::string();
+		operator std::string() const;
 };

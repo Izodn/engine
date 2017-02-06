@@ -67,6 +67,8 @@ void Game::Stop()
 
 void Game::ChangeToLevel(GameLevel* level)
 {
+	Logger() << "Changing to level" << (void*)level << "\n";
+
 	// If we're on a level currently, tell the old level to cleanup
 	if (m_CurrentLevel != nullptr) {
 		m_CurrentLevel->Cleanup();
@@ -79,6 +81,8 @@ void Game::ChangeToLevel(GameLevel* level)
 		m_CurrentLevel->Init();
 		m_CurrentLevel->StartObjects();
 	}
+
+	Logger() << "Change to level successful" << "\n";
 }
 
 void Game::Cleanup()

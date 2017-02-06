@@ -30,58 +30,55 @@ Vector3 Vector3::SetZ(double z)
 	m_Z = z;
 	return *this;
 }
-double Vector3::GetX()
+double Vector3::GetX() const
 {
 	return m_X;
 }
-double Vector3::GetY()
+double Vector3::GetY() const
 {
 	return m_Y;
 }
-double Vector3::GetZ()
+double Vector3::GetZ() const
 {
 	return m_Z;
 }
 
-// Methods
-double Vector3::Length()
+// Default Vectors
+Vector3 Vector3::Forward()
 {
-	return sqrt(
-		pow(m_X, 2.0f) + pow(m_Y, 2.0f) + pow(m_Z, 2.0f)
-	);
+	return Vector3(0.0f, 0.0f, 1.0f);
 }
-Vector3 Vector3::Normalize()
+Vector3 Vector3::Up()
 {
-	return *this /= Length();
+	return Vector3(0.0f, 1.0f, 0.0f);
 }
-Vector3 Vector3::Normalized()
+Vector3 Vector3::Right()
 {
-	Vector3 vec(GetX(), GetY(), GetZ());
-	return vec /= vec.Length();
-}
-double Vector3::Distance(Vector3 target)
-{
-	return Distance(*this, target);
-}
-double Vector3::Angle(Vector3 target)
-{
-	return Angle(*this, target);
-}
-double Vector3::Dot(Vector3 target)
-{
-	return Dot(*this, target);
-}
-Vector3 Vector3::Cross(Vector3 target)
-{
-	return Cross(*this, target);
+	return Vector3(1.0f, 0.0f, 0.0f);
 }
 
 // Static methods
-double Vector3::Distance(Vector3 vec1, Vector3 vec2)
+double Vector3::Length(const Vector3& vec)
+{
+	return sqrt(
+		pow(vec.GetX(), 2.0f)
+		+ pow(vec.GetY(), 2.0f)
+		+ pow(vec.GetZ(), 2.0f)
+	);
+}
+Vector3 Vector3::Normalized(const Vector3& vec)
+{
+	return vec / vec.Length();
+}
+Vector3 Vector3::Normalize(Vector3 vec)
+{
+	return vec = Normalized(vec);
+}
+double Vector3::Distance(const Vector3& vec1, const Vector3& vec2)
 {
 	return (vec1 - vec2).Length();
 }
-double Vector3::Angle(Vector3 vec1, Vector3 vec2)
+double Vector3::Angle(const Vector3& vec1, const Vector3& vec2)
 {
 	double denominator = (
 		vec1.Length() * vec2.Length()
@@ -100,7 +97,7 @@ double Vector3::Angle(Vector3 vec1, Vector3 vec2)
 		) / denominator
 	) * 180 / (/*PI*/4*atan(1));
 }
-double Vector3::Dot(Vector3 vec1, Vector3 vec2)
+double Vector3::Dot(const Vector3& vec1, const Vector3& vec2)
 {
 	return (
 		(vec1.GetX() * vec2.GetX()) +
@@ -108,7 +105,7 @@ double Vector3::Dot(Vector3 vec1, Vector3 vec2)
 		(vec1.GetZ() * vec2.GetZ())
 	);
 }
-Vector3 Vector3::Cross(Vector3 vec1, Vector3 vec2)
+Vector3 Vector3::Cross(const Vector3& vec1, const Vector3& vec2)
 {
 	return Vector3(
 		vec1.GetY() * vec2.GetZ() - vec1.GetZ() * vec2.GetY(),
@@ -117,20 +114,58 @@ Vector3 Vector3::Cross(Vector3 vec1, Vector3 vec2)
 	);
 }
 
+// Methods
+double Vector3::Length() const
+{
+	return Length(*this);
+}
+Vector3 Vector3::Normalize()
+{
+	return Normalize(*this);
+}
+Vector3 Vector3::Normalized() const
+{
+	return Normalized(*this);
+}
+double Vector3::Distance(const Vector3& target) const
+{
+	return Distance(*this, target);
+}
+double Vector3::Angle(const Vector3& target) const
+{
+	return Angle(*this, target);
+}
+double Vector3::Dot(const Vector3& target) const
+{
+	return Dot(*this, target);
+}
+Vector3 Vector3::Cross(const Vector3& target) const
+{
+	return Cross(*this, target);
+}
+
 // Operators
-Vector3 Vector3::operator+(Vector3 rh)
+Vector3 Vector3::operator=(const Vector3& rh)
+{
+	m_X = rh.GetX();
+	m_Y = rh.GetY();
+	m_Z = rh.GetZ();
+	return *this;
+}
+
+Vector3 Vector3::operator+(const Vector3& rh) const
 {
 	return Vector3(
-		GetX() + rh.GetX(),
-		GetY() + rh.GetY(),
-		GetZ() + rh.GetZ()
+		m_X + rh.GetX(),
+		m_Y + rh.GetY(),
+		m_Z + rh.GetZ()
 	);
 }
-Vector3 Vector3::operator+(double rh)
+Vector3 Vector3::operator+(double rh) const
 {
 	return *this + Vector3(rh, rh, rh);
 }
-Vector3 Vector3::operator+=(Vector3 rh)
+Vector3 Vector3::operator+=(const Vector3& rh)
 {
 	return *this = *this + rh;
 }
@@ -139,19 +174,19 @@ Vector3 Vector3::operator+=(double rh)
 	return *this = *this + rh;
 }
 
-Vector3 Vector3::operator-(Vector3 rh)
+Vector3 Vector3::operator-(const Vector3& rh) const
 {
 	return Vector3(
-		GetX() - rh.GetX(),
-		GetY() - rh.GetY(),
-		GetZ() - rh.GetZ()
+		m_X - rh.GetX(),
+		m_Y - rh.GetY(),
+		m_Z - rh.GetZ()
 	);
 }
-Vector3 Vector3::operator-(double rh)
+Vector3 Vector3::operator-(double rh) const
 {
 	return *this - Vector3(rh, rh, rh);
 }
-Vector3 Vector3::operator-=(Vector3 rh)
+Vector3 Vector3::operator-=(const Vector3& rh)
 {
 	return *this = *this - rh;
 }
@@ -160,19 +195,19 @@ Vector3 Vector3::operator-=(double rh)
 	return *this = *this - rh;
 }
 
-Vector3 Vector3::operator*(Vector3 rh)
+Vector3 Vector3::operator*(const Vector3& rh) const
 {
 	return Vector3(
-		GetX() * rh.GetX(),
-		GetY() * rh.GetY(),
-		GetZ() * rh.GetZ()
+		m_X * rh.GetX(),
+		m_Y * rh.GetY(),
+		m_Z * rh.GetZ()
 	);
 }
-Vector3 Vector3::operator*(double rh)
+Vector3 Vector3::operator*(double rh) const
 {
 	return *this * Vector3(rh, rh, rh);
 }
-Vector3 Vector3::operator*=(Vector3 rh)
+Vector3 Vector3::operator*=(const Vector3& rh)
 {
 	return *this = *this * rh;
 }
@@ -181,19 +216,19 @@ Vector3 Vector3::operator*=(double rh)
 	return *this = *this * rh;
 }
 
-Vector3 Vector3::operator/(Vector3 rh)
+Vector3 Vector3::operator/(const Vector3& rh) const
 {
 	return Vector3(
-		GetX() / rh.GetX(),
-		GetY() / rh.GetY(),
-		GetZ() / rh.GetZ()
+		m_X / rh.GetX(),
+		m_Y / rh.GetY(),
+		m_Z / rh.GetZ()
 	);
 }
-Vector3 Vector3::operator/(double rh)
+Vector3 Vector3::operator/(double rh) const
 {
 	return *this / Vector3(rh, rh, rh);
 }
-Vector3 Vector3::operator/=(Vector3 rh)
+Vector3 Vector3::operator/=(const Vector3& rh)
 {
 	return *this = *this / rh;
 }
@@ -202,27 +237,27 @@ Vector3 Vector3::operator/=(double rh)
 	return *this = *this / rh;
 }
 
-bool Vector3::operator==(Vector3 rh)
+bool Vector3::operator==(const Vector3& rh) const
 {
 	return (
-		GetX() == rh.GetX()
-		&& GetY() == rh.GetY()
-		&& GetZ() == rh.GetZ()
+		m_X == rh.GetX()
+		&& m_Y == rh.GetY()
+		&& m_Z == rh.GetZ()
 	);
 }
-bool Vector3::operator!=(Vector3 rh)
+bool Vector3::operator!=(const Vector3& rh) const
 {
 	return !(*this == rh);
 }
 
-Vector3::operator std::string()
+Vector3::operator std::string() const
 {
 	std::ostringstream strX;
 	std::ostringstream strY;
 	std::ostringstream strZ;
-	strX << GetX();
-	strY << GetY();
-	strZ << GetZ();
+	strX << m_X;
+	strY << m_Y;
+	strZ << m_Z;
 
 	std::string retStr = "Vector3(" +
 		strX.str() + "f, " +

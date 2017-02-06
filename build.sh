@@ -12,6 +12,7 @@ OUTPUT_NAME="lib$APP_NAME.so"
 FILES=(
 	# Maths
 	"maths/Vector3.cpp"
+	"maths/Quaternion.cpp"
 
 	# Generic
 	"component/Component.cpp"
@@ -29,10 +30,12 @@ FILES=(
 	"graphics/opengl/OpenGLWindow.cpp"
 	"graphics/shader/opengl/OpenGLShader.cpp"
 	"graphics/shader/opengl/BasicOpenGLShader.cpp"
+	"graphics/shader/opengl/TextureOpenGLShader.cpp"
 
 	# Render components
 	"component/RenderComponent.cpp"
 	"component/FillSquare.cpp"
+	"component/TestGL.cpp"
 )
 
 COMPILER="g++"
@@ -41,7 +44,7 @@ SRC_DIR="./src"
 
 # Linux
 INCFLAGS=""
-LINKFLAGS="-Wl,-Bstatic -lGLEW -lglfw3 -Wl,-Bdynamic -lGL -ldl -lXinerama -lXrandr -lXcursor -lX11 -lXxf86vm -lpthread -Wl,--as-needed"
+LINKFLAGS="-Wl,-Bstatic -lSOIL -lGLEW -lglfw3 -Wl,-Bdynamic -lGL -ldl -lXinerama -lXrandr -lXcursor -lX11 -lXxf86vm -lpthread -Wl,--as-needed"
 
 # Windows
 #INCFLAGS="-I../libraries"
