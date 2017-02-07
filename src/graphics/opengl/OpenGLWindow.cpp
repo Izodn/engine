@@ -26,6 +26,8 @@ OpenGLWindow::OpenGLWindow(int width, int height, std::string title)
 
 	glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
 	glViewport(0, 0, m_Width, m_Height);
+	glEnable(GL_DEPTH_TEST);
+
 	glfwSwapInterval(0);
 
 	OpenGLRenderer* renderer = new OpenGLRenderer();

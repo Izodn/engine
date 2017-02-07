@@ -202,6 +202,10 @@ Vector3 Quaternion::Rotate(const Quaternion& quat, const Vector3& vec)
 		((((w * qZ) + (z * qW)) - (x * qY))+ (y * qX))
 	);
 }
+Quaternion Quaternion::Rotate(const Quaternion& quat, const Vector3& axis, double angle)
+{
+	return quat * Quaternion::FromAxisAngle(axis, angle);
+}
 double Quaternion::Dot(const Quaternion& quat1, const Quaternion& quat2)
 {
 	return (
@@ -264,6 +268,10 @@ Vector3 Quaternion::GetAxis() const
 Vector3 Quaternion::Rotate(const Vector3& vec) const
 {
 	return Rotate(*this, vec);
+}
+Quaternion Quaternion::Rotate(const Vector3& axis, double angle)
+{
+	return *this = Quaternion::Rotate(*this, axis, angle);
 }
 double Quaternion::Dot(const Quaternion& target) const
 {

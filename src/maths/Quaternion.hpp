@@ -44,6 +44,7 @@ class Quaternion
 		static Quaternion Rotation(const Vector3&, const Vector3&);
 		static Quaternion Rotation(double, const Vector3&);
 		static Vector3 Rotate(const Quaternion&, const Vector3&);
+		static Quaternion Rotate(const Quaternion&, const Vector3&, double);
 		static double Dot(const Quaternion&, const Quaternion&);
 		static Quaternion LookAt(const Vector3&, const Vector3&);
 		static double Angle(const Quaternion&);
@@ -57,6 +58,7 @@ class Quaternion
 		Vector3 ToEulerAngles() const;
 		Vector3 GetAxis() const;
 		Vector3 Rotate(const Vector3&) const;
+		Quaternion Rotate(const Vector3&, double);
 		double Dot(const Quaternion&) const;
 		double Angle() const;
 

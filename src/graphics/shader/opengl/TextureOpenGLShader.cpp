@@ -5,15 +5,12 @@ GLuint TextureOpenGLShader::CompileShader()
 	const char* vertex_shader =
 	"#version 400\n"
 	"layout (location = 0) in vec3 position;\n"
-	"layout (location = 1) in vec3 color;\n"
-	"layout (location = 2) in vec2 texCoord;\n"
-	"out vec3 ourColor;\n"
+	"layout (location = 1) in vec2 texCoord;\n"
 	"out vec2 TexCoord;\n"
 	"uniform mat4 transform;\n"
 	"void main()\n"
 	"{\n"
 	"	gl_Position = transform * vec4(position, 1.0f);\n"
-	"	ourColor = color;\n"
 	"	TexCoord = vec2(texCoord.x, 1.0 - texCoord.y);\n"
 	"}";
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);

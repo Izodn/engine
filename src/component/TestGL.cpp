@@ -14,31 +14,51 @@ void TestGL::RenderStart(Renderer* renderer)
 
 			// Set up vertex data (and buffer(s)) and attribute pointers
 			GLfloat vertices[] = {
-				// Positions         // Colors          // Texture Coords
+				-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+				 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+				 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+				 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+				-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+				-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 
-				// Top Right
-				0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
+				-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+				 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+				 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+				 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+				-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+				-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
 
-				// Bottom Right
-				0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+				-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+				-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+				-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+				-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+				-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+				-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
-				// Bottom Left
-				-0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,  0.0f, 0.0f,
+				 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+				 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+				 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+				 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+				 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+				 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
 
-				// Top Left
-				-0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f
-			};
-			GLuint indices[] = {
-				// First Triangle
-				0, 1, 3,
+				-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+				 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+				 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+				 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+				-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+				-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
 
-				// Second Triangle
-				1, 2, 3
+				-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+				 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+				 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+				 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+				-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+				-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 			};
 
 			glGenVertexArrays(1, &m_VAO);
 			glGenBuffers(1, &m_VBO);
-			glGenBuffers(1, &m_EBO);
 
 			glBindVertexArray(m_VAO);
 			{
@@ -49,13 +69,6 @@ void TestGL::RenderStart(Renderer* renderer)
 					vertices,
 					GL_STATIC_DRAW
 				);
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
-				glBufferData(
-					GL_ELEMENT_ARRAY_BUFFER,
-					sizeof(indices),
-					indices,
-					GL_STATIC_DRAW
-				);
 
 				// Position attribute
 				glVertexAttribPointer(
@@ -63,32 +76,21 @@ void TestGL::RenderStart(Renderer* renderer)
 					3,
 					GL_FLOAT,
 					GL_FALSE,
-					8 * sizeof(float),
+					5 * sizeof(float),
 					(GLvoid*)0
 				);
 				glEnableVertexAttribArray(0);
 
-				// Color attribute
+				// TexCoord attribute
 				glVertexAttribPointer(
 					1,
-					3,
+					2,
 					GL_FLOAT,
 					GL_FALSE,
-					8 * sizeof(float),
+					5 * sizeof(float),
 					(GLvoid*)(3 * sizeof(GLfloat))
 				);
 				glEnableVertexAttribArray(1);
-
-				// TexCoord attribute
-				glVertexAttribPointer(
-					2,
-					2,
-					GL_FLOAT,
-					GL_FALSE,
-					8 * sizeof(float),
-					(GLvoid*)(6 * sizeof(GLfloat))
-				);
-				glEnableVertexAttribArray(2);
 
 			}
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -208,7 +210,7 @@ void TestGL::RenderUpdate(Renderer* renderer)
 
 			glBindVertexArray(m_VAO);
 			{
-				glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+				glDrawArrays(GL_TRIANGLES, 0, 36);
 			}
 			glBindVertexArray(0);
 
