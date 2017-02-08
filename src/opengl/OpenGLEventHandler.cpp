@@ -16,6 +16,11 @@ void OpenGLEventHandler::stMouseButtonCallback(GLFWwindow*, int button, int acti
 	Self()->MouseButtonCallback(button, action);
 }
 
+void OpenGLEventHandler::stCursorPosCallback(GLFWwindow*, double xPos, double yPos)
+{
+	Self()->CursorPosCallback(xPos, yPos);
+}
+
 void OpenGLEventHandler::MouseButtonCallback(int button, int action)
 {
 	auto got = m_MouseButtonPairs.find(button);
@@ -32,6 +37,11 @@ void OpenGLEventHandler::MouseButtonCallback(int button, int action)
 			<< "Unregistered click:" << button
 			<< " action:" << action << "\n";
 	}
+}
+
+void OpenGLEventHandler::CursorPosCallback(double xPos, double yPos)
+{
+	Input::SetAxis(xPos, yPos);
 }
 
 void OpenGLEventHandler::stKeyCallback(GLFWwindow*, int button, int, int action, int)
@@ -76,6 +86,7 @@ void OpenGLEventHandler::Register()
 {
 	// Set GLFW callbacks
 	glfwSetMouseButtonCallback(m_Window, &OpenGLEventHandler::stMouseButtonCallback);
+	glfwSetCursorPosCallback(m_Window, &OpenGLEventHandler::stCursorPosCallback);
 	glfwSetKeyCallback(m_Window, &OpenGLEventHandler::stKeyCallback);
 }
 

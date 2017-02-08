@@ -1,5 +1,7 @@
 #include "Input.hpp"
 
+#include "Logger.hpp"
+
 Input* Input::Self()
 {
 	static Input* instance = new Input();
@@ -37,17 +39,21 @@ void Input::Clear()
 
 double Input::GetAxis(Input::Axis axis)
 {
-	double delta = 0;
-
 	if (axis == Input::Axis::VERTICAL) {
-
+		return Self()->m_CursorY;
 	} else if (axis == Input::Axis::HORIZONTAL) {
-
+		return Self()->m_CursorX;
 	} else {
-
+		Logger() << "Input::GetAxis() Unexpected axis requested\n";
+		return 0.0f;
 	}
+}
 
-	return delta;
+void Input::SetAxis(double xPos, double yPos)
+{
+	Self()->m_CursorX = xPos;
+	Self()->m_CursorY = yPos;
+	//Logger() << "MousePos: (" << xPos << ", " << yPos << ")\n";
 }
 
 bool Input::Pressed(Input::Key key)

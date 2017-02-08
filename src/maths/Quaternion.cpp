@@ -218,7 +218,8 @@ double Quaternion::Dot(const Quaternion& quat1, const Quaternion& quat2)
 Quaternion Quaternion::LookAt(const Vector3& origin, const Vector3& target)
 {
 	Vector3 forward = (target - origin).Normalized();
-	double dot = Vector3(0.0f, 0.0f, 1.0f).Dot(forward);
+
+	double dot = Vector3::Forward().Dot(forward);
 
 	if (abs(dot - (-1.0f)) < 0.000001f) {
 		return Quaternion(

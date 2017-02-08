@@ -76,6 +76,8 @@ class Input
 	private:
 		std::vector<Input::Key> m_Pressed;
 		std::vector<Input::Key> m_Released;
+		double m_CursorX;
+		double m_CursorY;
 
 	public:
 		static Input* Self();
@@ -88,4 +90,6 @@ class Input
 		static bool Released(Input::Key);
 		static void Release(Input::Key);
 		static double GetAxis(Input::Axis);
+		static void SetAxis(double, double);
+
 };

@@ -87,10 +87,12 @@ class OpenGLEventHandler : public EventHandler
 	public:
 		static OpenGLEventHandler* Self();
 		static void stMouseButtonCallback(GLFWwindow*, int, int, int);
+		static void stCursorPosCallback(GLFWwindow*, double, double);
 		static void stKeyCallback(GLFWwindow*, int, int, int, int);
 
 	public:
 		void MouseButtonCallback(int, int);
+		void CursorPosCallback(double, double);
 		void KeyCallback(int, int);
 		void SetWindow(GLFWwindow*);
 		void SetGame(Game*);
