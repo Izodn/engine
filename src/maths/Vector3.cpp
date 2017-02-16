@@ -80,22 +80,14 @@ double Vector3::Distance(const Vector3& vec1, const Vector3& vec2)
 }
 double Vector3::Angle(const Vector3& vec1, const Vector3& vec2)
 {
-	double denominator = (
-		vec1.Length() * vec2.Length()
-	);
+	double denominator = (vec1.Length() * vec2.Length());
 
 	// if devide by zero, then must be a 90-degree angle
 	if (denominator == 0.0f) {
 		return 0.0f;
 	}
 
-	return acos(
-		(
-			(vec1.GetX() * vec2.GetX()) +
-			(vec1.GetY() * vec2.GetY()) +
-			(vec1.GetZ() * vec2.GetZ())
-		) / denominator
-	);
+	return acos((Vector3::Dot(vec1, vec2)) / denominator);
 }
 double Vector3::Dot(const Vector3& vec1, const Vector3& vec2)
 {

@@ -215,24 +215,22 @@ double Quaternion::Dot(const Quaternion& quat1, const Quaternion& quat2)
 		+ (quat1.GetW() * quat2.GetW())
 	);
 }
-Quaternion Quaternion::LookAt(const Vector3& origin, const Vector3& target)
-{
+Quaternion Quaternion::LookAt(const Vector3& origin, const Vector3& target) {
 	Vector3 forward = (target - origin).Normalized();
+	double dot = Vector3::Dot(Vector3::Forward(), forward);
 
-	double dot = Vector3::Forward().Dot(forward);
-
-	if (abs(dot - (-1.0f)) < 0.000001f) {
+	if (std::abs(dot - (-1.0f)) < 0.000001f) {
 		return Quaternion(
 			Vector3::Up(),
 			/*PI*/4*atan(1)
 		);
 	}
-	if (abs(dot - (1.0f)) < 0.000001f) {
+	if (std::abs(dot - (1.0f)) < 0.000001f) {
 		return Quaternion::Identity();
 	}
 
 	return FromAxisAngle(
-		Vector3::Forward().Cross(forward).Normalized(),
+		Vector3::Cross(Vector3::Forward(), forward).Normalized(),
 		acos(dot)
 	);
 }

@@ -58,6 +58,16 @@ void OpenGLWindow::SetResolution(int width, int height)
 	glViewport(0, 0, m_Width, m_Height);
 }
 
+int OpenGLWindow::GetWidth()
+{
+	return m_Width;
+}
+
+int OpenGLWindow::GetHeight()
+{
+	return m_Height;
+}
+
 void OpenGLWindow::SetTitle(std::string title)
 {
 	m_Title = title;

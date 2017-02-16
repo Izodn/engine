@@ -33,5 +33,7 @@ class OpenGLWindow : public Window
 		Renderer* GetRenderer();
 		GLFWwindow* GetWindow();
 		void SetResolution(int, int);
+		int GetWidth();
+		int GetHeight();
 		void SetTitle(std::string);
 };

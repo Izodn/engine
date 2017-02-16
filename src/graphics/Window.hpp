@@ -12,5 +12,7 @@ class Window
 		virtual void SetRenderer(Renderer*) = 0;
 		virtual Renderer* GetRenderer() = 0;
 		virtual void SetResolution(int, int) = 0;
+		virtual int GetWidth() = 0;
+		virtual int GetHeight() = 0;
 		virtual void SetTitle(std::string) = 0;
 };
