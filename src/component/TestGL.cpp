@@ -6,6 +6,18 @@
 
 void TestGL::RenderStart(Renderer* renderer)
 {
+	// Window dimensions
+	m_Window = m_GameObject->GetLevel()->GetGame()->GetWindow();
+
+	// Reference the GameObject's transform
+	Transform* transform = m_GameObject->GetTransform();
+
+	// Reference the GameObject's position
+	m_Position = transform->GetPosition();
+
+	// Reference the quaternion in the form of angle & axis for GL
+	m_Rotation = transform->GetRotation();
+
 	if (dynamic_cast<OpenGLRenderer*>(renderer)) {
 		OpenGLRenderer* glRenderer = (OpenGLRenderer*) renderer;
 
@@ -157,6 +169,16 @@ void TestGL::RenderStart(Renderer* renderer)
 			SOIL_free_image_data(image);
 			glBindTexture(GL_TEXTURE_2D, 0);
 
+			// Transformations
+			glm::mat4 view;
+			m_View = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.0f));
+			m_Projection = glm::perspective(
+				45.0f,
+				(GLfloat)m_Window->GetWidth() / (GLfloat)m_Window->GetHeight(),
+				0.1f,
+				100.0f
+			);
+
 		} else {
 			std::cout << "Unexpected shader type. Cannot render." << std::endl;
 		}
@@ -171,22 +193,11 @@ void TestGL::RenderUpdate(Renderer* renderer)
 		OpenGLRenderer* glRenderer = (OpenGLRenderer*) renderer;
 
 		if (dynamic_cast<OpenGLShader*>(m_Shader)) {
-			OpenGLShader* glShader = (OpenGLShader*) m_Shader;
-			GLuint shader = glShader->GetId();
+			GLuint shader = ((OpenGLShader*) m_Shader)->GetId();
+			Vector3 axis = m_Rotation->GetAxis();
+			double angle = m_Rotation->Angle();
 
-			// Window dimensions
-			Window* window = m_GameObject->GetLevel()->GetGame()->GetWindow();
-
-			// GameObject data
-			Transform* transform = m_GameObject->GetTransform();
-
-			// Reference the GameObject's position
-			Vector3* position = transform->GetPosition();
-
-			// Reference the quaternion in the form of angle & axis for GL
-			Quaternion* quat = transform->GetRotation();
-			Vector3 axis = quat->GetAxis();
-			double angle = quat->Angle();
+			glUseProgram(shader);
 
 			// Texture 1
 			glActiveTexture(GL_TEXTURE0);
@@ -204,18 +215,6 @@ void TestGL::RenderUpdate(Renderer* renderer)
 				1
 			);
 
-			glUseProgram(shader);
-
-			// Transformations
-			glm::mat4 view;
-			glm::mat4 projection;
-			view = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.0f));
-			projection = glm::perspective(
-				45.0f,
-				(GLfloat)window->GetWidth() / (GLfloat)window->GetHeight(),
-				0.1f,
-				100.0f
-			);
 
 			// Get their uniform location
 			GLint modelLoc = glGetUniformLocation(shader, "model");
@@ -223,18 +222,13 @@ void TestGL::RenderUpdate(Renderer* renderer)
 			GLint projLoc = glGetUniformLocation(shader, "projection");
 
 			// Pass the matrices to the shader
-			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(m_View));
 
-			/*
-			 * Note: currently we set the projection matrix each frame, but
-			 * since the projection matrix rarely changes it's often best
-			 * practice to set it outside the main loop only once.
-			 */
 			glUniformMatrix4fv(
 				projLoc,
 				1,
 				GL_FALSE,
-				glm::value_ptr(projection)
+				glm::value_ptr(m_Projection)
 			);
 
 			glBindVertexArray(m_VAO);
@@ -247,9 +241,9 @@ void TestGL::RenderUpdate(Renderer* renderer)
 				model = glm::translate(
 					model,
 					glm::vec3(
-						(GLdouble)position->GetX(),
-						(GLdouble)position->GetY(),
-						(GLdouble)position->GetZ()
+						(GLdouble)m_Position->GetX(),
+						(GLdouble)m_Position->GetY(),
+						(GLdouble)m_Position->GetZ()
 					)
 				);
 				model = glm::rotate(
