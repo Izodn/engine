@@ -172,9 +172,19 @@ void TestGL::RenderUpdate(Renderer* renderer)
 
 		if (dynamic_cast<OpenGLShader*>(m_Shader)) {
 			OpenGLShader* glShader = (OpenGLShader*) m_Shader;
+			GLuint shader = glShader->GetId();
+
+			// Window dimensions
+			Window* window = m_GameObject->GetLevel()->GetGame()->GetWindow();
+
+			// GameObject data
+			Transform* transform = m_GameObject->GetTransform();
+
+			// Reference the GameObject's position
+			Vector3* position = transform->GetPosition();
 
 			// Reference the quaternion in the form of angle & axis for GL
-			Quaternion* quat = m_GameObject->GetTransform()->GetRotation();
+			Quaternion* quat = transform->GetRotation();
 			Vector3 axis = quat->GetAxis();
 			double angle = quat->Angle();
 
@@ -182,7 +192,7 @@ void TestGL::RenderUpdate(Renderer* renderer)
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, m_Texture1);
 			glUniform1i(
-				glGetUniformLocation(glShader->GetId(), "ourTexture1"),
+				glGetUniformLocation(shader, "ourTexture1"),
 				0
 			);
 
@@ -190,26 +200,74 @@ void TestGL::RenderUpdate(Renderer* renderer)
 			glActiveTexture(GL_TEXTURE1);
 			glBindTexture(GL_TEXTURE_2D, m_Texture2);
 			glUniform1i(
-				glGetUniformLocation(glShader->GetId(), "ourTexture2"),
+				glGetUniformLocation(shader, "ourTexture2"),
 				1
 			);
 
-			glUseProgram(glShader->GetId());
+			glUseProgram(shader);
 
-			// Transform
-			glm::mat4 trans;
-			trans = glm::rotate(
-				trans,
-				(float)angle,
-				glm::vec3((float)axis.GetX(), (float)axis.GetY(), (float)axis.GetZ())
+			// Transformations
+			glm::mat4 view;
+			glm::mat4 projection;
+			view = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.0f));
+			projection = glm::perspective(
+				45.0f,
+				(GLfloat)window->GetWidth() / (GLfloat)window->GetHeight(),
+				0.1f,
+				100.0f
 			);
 
-			// Get matrix's uniform location and set matrix
-			GLint transformLoc = glGetUniformLocation(glShader->GetId(), "transform");
-			glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+			// Get their uniform location
+			GLint modelLoc = glGetUniformLocation(shader, "model");
+			GLint viewLoc = glGetUniformLocation(shader, "view");
+			GLint projLoc = glGetUniformLocation(shader, "projection");
+
+			// Pass the matrices to the shader
+			glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+
+			/*
+			 * Note: currently we set the projection matrix each frame, but
+			 * since the projection matrix rarely changes it's often best
+			 * practice to set it outside the main loop only once.
+			 */
+			glUniformMatrix4fv(
+				projLoc,
+				1,
+				GL_FALSE,
+				glm::value_ptr(projection)
+			);
 
 			glBindVertexArray(m_VAO);
 			{
+				/*
+				 * Calculate the model matrix for each object and pass it to
+				 * shader before drawing
+				 */
+				glm::mat4 model;
+				model = glm::translate(
+					model,
+					glm::vec3(
+						(GLdouble)position->GetX(),
+						(GLdouble)position->GetY(),
+						(GLdouble)position->GetZ()
+					)
+				);
+				model = glm::rotate(
+					model,
+					(GLfloat)angle,
+					glm::vec3(
+						(GLfloat)axis.GetX(),
+						(GLfloat)axis.GetY(),
+						(GLfloat)axis.GetZ()
+					)
+				);
+				glUniformMatrix4fv(
+					modelLoc,
+					1,
+					GL_FALSE,
+					glm::value_ptr(model)
+				);
+
 				glDrawArrays(GL_TRIANGLES, 0, 36);
 			}
 			glBindVertexArray(0);

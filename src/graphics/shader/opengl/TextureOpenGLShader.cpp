@@ -7,10 +7,12 @@ GLuint TextureOpenGLShader::CompileShader()
 	"layout (location = 0) in vec3 position;\n"
 	"layout (location = 1) in vec2 texCoord;\n"
 	"out vec2 TexCoord;\n"
-	"uniform mat4 transform;\n"
+	"uniform mat4 model;\n"
+	"uniform mat4 view;\n"
+	"uniform mat4 projection;\n"
 	"void main()\n"
 	"{\n"
-	"	gl_Position = transform * vec4(position, 1.0f);\n"
+	"	gl_Position = projection * view * model * vec4(position, 1.0f);\n"
 	"	TexCoord = vec2(texCoord.x, 1.0 - texCoord.y);\n"
 	"}";
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
