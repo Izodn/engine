@@ -51,7 +51,7 @@ LINKFLAGS="-Wl,-Bstatic -lSOIL -lGLEW -lglfw3 -Wl,-Bdynamic -lGL -ldl -lXinerama
 
 # Windows
 #INCFLAGS="-I../libraries"
-#LINKFLAGS="-L../libraries/GL -L../libraries/GLFW -Wl,-Bstatic -lglew32 -lglfw3 -Wl,-Bdynamic -lopengl32 -lgdi32 -lpthread -Wl,--as-needed"
+#LINKFLAGS="-L../libraries/GL -L../libraries/GLFW -L../libraries/SOIL -Wl,-Bstatic -lglew32 -lglfw3 -lSOIL -Wl,-Bdynamic -lopengl32 -lgdi32 -lpthread -Wl,--as-needed"
 
 CFLAGS_DEFAULT="-std=c++14 $INCFLAGS"
 
