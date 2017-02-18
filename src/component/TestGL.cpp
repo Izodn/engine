@@ -9,14 +9,11 @@ void TestGL::RenderStart(Renderer* renderer)
 	// Window dimensions
 	m_Window = m_GameObject->GetLevel()->GetGame()->GetWindow();
 
-	// Reference the GameObject's transform
-	Transform* transform = m_GameObject->GetTransform();
-
 	// Reference the GameObject's position
-	m_Position = transform->GetPosition();
+	m_Position = m_Transform->GetPosition();
 
 	// Reference the quaternion in the form of angle & axis for GL
-	m_Rotation = transform->GetRotation();
+	m_Rotation = m_Transform->GetRotation();
 
 	if (dynamic_cast<OpenGLRenderer*>(renderer)) {
 		OpenGLRenderer* glRenderer = (OpenGLRenderer*) renderer;

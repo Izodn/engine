@@ -1,11 +1,13 @@
 #pragma once
 
 class GameObject;
+class Transform;
 
 class Component
 {
 	protected:
 		GameObject* m_GameObject;
+		Transform* m_Transform;
 
 	public:
 		void SetGameObject(GameObject*);
