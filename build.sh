@@ -10,6 +10,13 @@ OUTPUT_NAME="lib$APP_NAME.so"
 #OUTPUT_NAME="$APP_NAME.dll"
 
 FILES=(
+	# Profiler
+	"profiler/Profiler.cpp"
+
+	# Core
+	"core/Input.cpp"
+	"core/Timer.cpp"
+
 	# Maths
 	"maths/Vector3.cpp"
 	"maths/Quaternion.cpp"
@@ -19,8 +26,6 @@ FILES=(
 	"Game.cpp"
 	"GameLevel.cpp"
 	"GameObject.cpp"
-	"core/Input.cpp"
-	"core/Timer.cpp"
 	"graphics/Renderer.cpp"
 
 	# OpenGL
@@ -54,6 +59,9 @@ LINKFLAGS="-Wl,-Bstatic -lSOIL -lGLEW -lglfw3 -Wl,-Bdynamic -lGL -ldl -lXinerama
 #LINKFLAGS="-L../libraries/GL -L../libraries/GLFW -L../libraries/SOIL -Wl,-Bstatic -lglew32 -lglfw3 -lSOIL -Wl,-Bdynamic -lopengl32 -lgdi32 -lpthread -Wl,--as-needed"
 
 CFLAGS_DEFAULT="-std=c++14 $INCFLAGS"
+
+# Profile
+#CFLAGS="$CFLAGS_DEFAULT -g -O0 -DPROFILER"
 
 # Debug
 CFLAGS="$CFLAGS_DEFAULT -g -O0"
