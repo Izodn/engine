@@ -26,7 +26,7 @@ class Game
 		uint64_t m_CurrentFrame;
 		uint64_t m_UpdateTickRate;
 		uint64_t m_LastUpdateTick;
-		Timer m_Timer;
+		Timer* m_Timer;
 
 	public:
 		Game();
